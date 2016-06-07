@@ -1,33 +1,46 @@
 PODS:
-  - Alamofire (3.3.1)
-  - RxAlamofire (2.2):
-    - RxAlamofire/Core (= 2.2)
-  - RxAlamofire/Core (2.2):
-    - Alamofire (~> 3.1)
-    - RxSwift (~> 2.1)
-  - RxBlocking (2.3.1):
-    - RxSwift (~> 2.3.1)
-  - RxCocoa (2.3.1):
-    - RxSwift (~> 2.3.1)
-  - RxSwift (2.3.1)
+  - Alamofire (3.4.0)
+  - JSQCoreDataKit (4.0.2)
+  - RxAlamofire (2.5):
+    - RxAlamofire/Core (= 2.5)
+  - RxAlamofire/Core (2.5):
+    - Alamofire (~> 3.4)
+    - RxSwift (~> 2.5)
+  - RxBlocking (2.5.0):
+    - RxSwift (~> 2.5)
+  - RxCocoa (2.5.0):
+    - RxSwift (~> 2.5)
+  - RxCoreData (0.2.0):
+    - RxCocoa (~> 2.5)
+    - RxSwift (~> 2.5)
+  - RxMKMapView (2.1.0):
+    - RxCocoa (~> 2)
+    - RxSwift (~> 2)
+  - RxSwift (2.5.0)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire
+  - JSQCoreDataKit
   - RxAlamofire
   - RxBlocking
   - RxCocoa
+  - RxCoreData
+  - RxMKMapView
   - RxSwift
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
-  RxAlamofire: 250b7846cedbd189d6190e4f83caa01ee1f1eceb
-  RxBlocking: 84fd81865a641a3843b33bae7b8315e78ddbd383
-  RxCocoa: a2baaf3462b989559a51dce59d78fbebb8fe0afa
-  RxSwift: 829b2843e9eddc77a02cb3f5117f0d55f8f646f1
+  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  JSQCoreDataKit: 5ff8701184611be7769926b91a0cba2115e4e69a
+  RxAlamofire: b4572a077b6b2410c8732a27266299df4c00736e
+  RxBlocking: 595d9ab56dde6b00beaa5aba40e95b150d2135f1
+  RxCocoa: e1b1562e57a554d0fb2aabf9d71b637f177257c7
+  RxCoreData: db41efb8fd61314b524eea587abc4ed4d9cf381d
+  RxMKMapView: 13035c88d8c9212caca7bd4c70b52a2866084d77
+  RxSwift: 402b41a50e922a0368fc14cb3bc9f4427920e8ae
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: a6d88de32c16ad770e273f8a30c8fcf2fcbd1087
+PODFILE CHECKSUM: 57a51a5ca0a57faef978b4dfd1995410c4f60a0d
 
 COCOAPODS: 1.0.1

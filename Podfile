@@ -1,13 +1,17 @@
-platform :ios, '9.0'
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '9.1'
 
 target 'PinPlace' do
   use_frameworks!
+  pod 'Alamofire'
+  pod 'SwiftyJSON'
+  pod 'JSQCoreDataKit'
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxBlocking'
-  pod 'SwiftyJSON'
-  pod 'Alamofire'
   pod 'RxAlamofire'
+  pod 'RxCoreData'
+  pod 'RxMKMapView'
     
   target 'PinPlaceTests' do
     inherit! :search_paths
