@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		AC80F8CB1D070FAD004CF58A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F8CA1D070FAD004CF58A /* AppDelegate.swift */; };
-		AC80F8CD1D070FAD004CF58A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F8CC1D070FAD004CF58A /* ViewController.swift */; };
 		AC80F8D01D070FAD004CF58A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC80F8CE1D070FAD004CF58A /* Main.storyboard */; };
 		AC80F8D21D070FAD004CF58A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC80F8D11D070FAD004CF58A /* Assets.xcassets */; };
 		AC80F8D51D070FAD004CF58A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC80F8D31D070FAD004CF58A /* LaunchScreen.storyboard */; };
@@ -44,7 +43,6 @@
 		8EF5ED12A2697CC255A9FA6D /* Pods-PinPlaceUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinPlaceUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PinPlaceUITests/Pods-PinPlaceUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AC80F8C71D070FAD004CF58A /* PinPlace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinPlace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC80F8CA1D070FAD004CF58A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AC80F8CC1D070FAD004CF58A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AC80F8CF1D070FAD004CF58A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AC80F8D11D070FAD004CF58A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC80F8D41D070FAD004CF58A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -137,8 +135,10 @@
 		AC80F8C91D070FAD004CF58A /* PinPlace */ = {
 			isa = PBXGroup;
 			children = (
+				AC80F8FB1D0717E9004CF58A /* ViewModel */,
+				AC80F8FA1D0717E1004CF58A /* View */,
+				AC80F8F91D0717D7004CF58A /* Model */,
 				AC80F8CA1D070FAD004CF58A /* AppDelegate.swift */,
-				AC80F8CC1D070FAD004CF58A /* ViewController.swift */,
 				AC80F8CE1D070FAD004CF58A /* Main.storyboard */,
 				AC80F8D11D070FAD004CF58A /* Assets.xcassets */,
 				AC80F8D31D070FAD004CF58A /* LaunchScreen.storyboard */,
@@ -163,6 +163,27 @@
 				AC80F8EC1D070FAD004CF58A /* Info.plist */,
 			);
 			path = PinPlaceUITests;
+			sourceTree = "<group>";
+		};
+		AC80F8F91D0717D7004CF58A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AC80F8FA1D0717E1004CF58A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AC80F8FB1D0717E9004CF58A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,7 +451,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC80F8CD1D070FAD004CF58A /* ViewController.swift in Sources */,
 				AC80F8CB1D070FAD004CF58A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
