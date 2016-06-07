@@ -13,6 +13,9 @@
 		AC80F8D51D070FAD004CF58A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC80F8D31D070FAD004CF58A /* LaunchScreen.storyboard */; };
 		AC80F8E01D070FAD004CF58A /* PinPlaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F8DF1D070FAD004CF58A /* PinPlaceTests.swift */; };
 		AC80F8EB1D070FAD004CF58A /* PinPlaceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F8EA1D070FAD004CF58A /* PinPlaceUITests.swift */; };
+		AC80F8FE1D071A1D004CF58A /* PinPlace.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AC80F8FC1D071A1D004CF58A /* PinPlace.xcdatamodeld */; };
+		AC80F9031D071B87004CF58A /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F9001D071B87004CF58A /* Place.swift */; };
+		AC80F9041D071B87004CF58A /* _Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F9021D071B87004CF58A /* _Place.swift */; };
 		DDC6E90654B17E7E86BA5332 /* Pods_PinPlace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC661CFEA15F8B4949437EA /* Pods_PinPlace.framework */; };
 		DEF1208402B6B83085F8B266 /* Pods_PinPlaceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDB33BA77A6FAE533E81AD46 /* Pods_PinPlaceTests.framework */; };
 		FAB87580E64121ACCC8F0110 /* Pods_PinPlaceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A3EF14DEFF0944586BB2480 /* Pods_PinPlaceUITests.framework */; };
@@ -53,6 +56,9 @@
 		AC80F8E61D070FAD004CF58A /* PinPlaceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PinPlaceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC80F8EA1D070FAD004CF58A /* PinPlaceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinPlaceUITests.swift; sourceTree = "<group>"; };
 		AC80F8EC1D070FAD004CF58A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC80F8FD1D071A1D004CF58A /* PinPlace.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PinPlace.xcdatamodel; sourceTree = "<group>"; };
+		AC80F9001D071B87004CF58A /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		AC80F9021D071B87004CF58A /* _Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Place.swift; sourceTree = "<group>"; };
 		C06226618C0DEDFDAE85A811 /* Pods-PinPlaceUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinPlaceUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PinPlaceUITests/Pods-PinPlaceUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C5FF54FC18F352523C071B7B /* Pods-PinPlace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinPlace.release.xcconfig"; path = "Pods/Target Support Files/Pods-PinPlace/Pods-PinPlace.release.xcconfig"; sourceTree = "<group>"; };
 		EDC661CFEA15F8B4949437EA /* Pods_PinPlace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinPlace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +149,7 @@
 				AC80F8D11D070FAD004CF58A /* Assets.xcassets */,
 				AC80F8D31D070FAD004CF58A /* LaunchScreen.storyboard */,
 				AC80F8D61D070FAD004CF58A /* Info.plist */,
+				AC80F8FC1D071A1D004CF58A /* PinPlace.xcdatamodeld */,
 			);
 			path = PinPlace;
 			sourceTree = "<group>";
@@ -168,6 +175,8 @@
 		AC80F8F91D0717D7004CF58A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AC80F8FF1D071B87004CF58A /* Human */,
+				AC80F9011D071B87004CF58A /* Machine */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -184,6 +193,22 @@
 			children = (
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		AC80F8FF1D071B87004CF58A /* Human */ = {
+			isa = PBXGroup;
+			children = (
+				AC80F9001D071B87004CF58A /* Place.swift */,
+			);
+			path = Human;
+			sourceTree = "<group>";
+		};
+		AC80F9011D071B87004CF58A /* Machine */ = {
+			isa = PBXGroup;
+			children = (
+				AC80F9021D071B87004CF58A /* _Place.swift */,
+			);
+			path = Machine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -451,7 +476,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC80F9031D071B87004CF58A /* Place.swift in Sources */,
 				AC80F8CB1D070FAD004CF58A /* AppDelegate.swift in Sources */,
+				AC80F8FE1D071A1D004CF58A /* PinPlace.xcdatamodeld in Sources */,
+				AC80F9041D071B87004CF58A /* _Place.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -707,6 +735,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		AC80F8FC1D071A1D004CF58A /* PinPlace.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AC80F8FD1D071A1D004CF58A /* PinPlace.xcdatamodel */,
+			);
+			currentVersion = AC80F8FD1D071A1D004CF58A /* PinPlace.xcdatamodel */;
+			path = PinPlace.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = AC80F8BF1D070FAD004CF58A /* Project object */;
 }
