@@ -30,6 +30,7 @@ class PlacesMapViewController: UIViewController {
         
         setupMapForUpdatingUserLocation()
        
+        mapView.addAnnotations(viewModel.places)
         
         longPressGestureRecognizer.rx_event.subscribeNext { [unowned self]longPressGesture in
             if longPressGesture.state != .Ended {

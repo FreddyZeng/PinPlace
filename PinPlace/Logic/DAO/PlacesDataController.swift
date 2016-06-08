@@ -53,4 +53,22 @@ class PlacesDataController {
             
         }
     }
+    
+    func fetchPlaces() -> Array<Place> {
+        var result = Array<Place>()
+        
+        guard let stack = self.stack, let placeEntity = Place.entity(stack.mainContext) else {
+            return result
+        }
+        
+        let request = FetchRequest<Place>(entity: placeEntity)
+        
+        do {
+            result = try stack.mainContext.fetch(request: request)
+        } catch {
+            print("Fetch error: \(error)")
+        }
+        
+        return result
+    }
 }
