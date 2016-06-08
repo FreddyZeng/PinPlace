@@ -5,7 +5,7 @@ import Foundation
 import CoreData
 
 public enum PlaceAttributes: String {
-    case locationCoordinate = "locationCoordinate"
+    case location = "location"
     case title = "title"
 }
 
@@ -35,7 +35,7 @@ public class _Place: NSManagedObject {
     // MARK: - Properties
 
     @NSManaged public
-    var locationCoordinate: AnyObject?
+    var location: AnyObject?
 
     @NSManaged public
     var title: String?

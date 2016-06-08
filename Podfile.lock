@@ -13,6 +13,9 @@ PODS:
   - RxCoreData (0.2.0):
     - RxCocoa (~> 2.5)
     - RxSwift (~> 2.5)
+  - RxGesture (0.1.2):
+    - RxCocoa
+    - RxSwift
   - RxMKMapView (2.1.0):
     - RxCocoa (~> 2)
     - RxSwift (~> 2)
@@ -26,6 +29,7 @@ DEPENDENCIES:
   - RxBlocking
   - RxCocoa
   - RxCoreData
+  - RxGesture
   - RxMKMapView
   - RxSwift
   - SwiftyJSON
@@ -37,10 +41,11 @@ SPEC CHECKSUMS:
   RxBlocking: 595d9ab56dde6b00beaa5aba40e95b150d2135f1
   RxCocoa: e1b1562e57a554d0fb2aabf9d71b637f177257c7
   RxCoreData: db41efb8fd61314b524eea587abc4ed4d9cf381d
+  RxGesture: 5a5d7ee565fb24b1dbede801e7a98d4169ac5818
   RxMKMapView: 13035c88d8c9212caca7bd4c70b52a2866084d77
   RxSwift: 402b41a50e922a0368fc14cb3bc9f4427920e8ae
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 57a51a5ca0a57faef978b4dfd1995410c4f60a0d
+PODFILE CHECKSUM: 5a752c0670a2e0bf356ad571cd9ecde84debac07
 
 COCOAPODS: 1.0.1

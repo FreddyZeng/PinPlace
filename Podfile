@@ -11,6 +11,7 @@ target 'PinPlace' do
   pod 'RxBlocking'
   pod 'RxAlamofire'
   pod 'RxCoreData'
+  pod 'RxGesture'
   pod 'RxMKMapView'
     
   target 'PinPlaceTests' do
