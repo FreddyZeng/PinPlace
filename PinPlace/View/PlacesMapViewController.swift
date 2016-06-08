@@ -21,12 +21,15 @@ class PlacesMapViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     let viewModel = PlacesMapViewModel()
+    let locationManager = CLLocationManager()
     
     // MARK: - UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupMapForUpdatingUserLocation()
+       
         
         longPressGestureRecognizer.rx_event.subscribeNext { [unowned self]longPressGesture in
             if longPressGesture.state != .Ended {
@@ -42,4 +45,17 @@ class PlacesMapViewController: UIViewController {
     }
     
     // MARK: - Private
+    
+    private func setupMapForUpdatingUserLocation() {
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        mapView.showsUserLocation = true
+        mapView.showsPointsOfInterest = true
+    }
+}
+
+extension PlacesMapViewController: CLLocationManagerDelegate {
+    
 }
