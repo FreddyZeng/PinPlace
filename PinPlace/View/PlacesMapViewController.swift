@@ -66,9 +66,27 @@ class PlacesMapViewController: UIViewController {
     }
 }
 
+// MARK: - CLLocationManagerDelegate
+
 extension PlacesMapViewController: CLLocationManagerDelegate {
     
 }
+
+// MARK: - MKMapViewDelegate
+
+extension PlacesMapViewController: MKMapViewDelegate {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return mapView.viewForAnnotation(annotation)
+        }
+        let placeAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "PlaceAnnotationViewIdentifier")
+        placeAnnotationView.canShowCallout = true
+        placeAnnotationView.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+        return placeAnnotationView
+    }
+}
+
+// MARK: - UIPopoverPresentationControllerDelegate
 
 extension PlacesMapViewController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
