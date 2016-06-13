@@ -48,7 +48,15 @@
                             <constraint firstItem="NnK-SD-MYD" firstAttribute="top" secondItem="DKw-49-Y5Z" secondAttribute="bottom" id="S7w-Gx-atv"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Places Map" id="GDH-Me-Tye"/>
+                    <navigationItem key="navigationItem" title="Places Map" id="GDH-Me-Tye">
+                        <barButtonItem key="rightBarButtonItem" title="Bookmarks" id="RmZ-sY-gmh">
+                            <connections>
+                                <segue destination="gAF-oK-pc6" kind="popoverPresentation" identifier="showPopover" popoverAnchorBarButtonItem="RmZ-sY-gmh" id="JcQ-9T-18F">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="longPressGestureRecognizer" destination="xQs-My-j9R" id="2wk-OO-16W"/>
                         <outlet property="mapView" destination="NnK-SD-MYD" id="A5C-jW-bYZ"/>
@@ -58,6 +66,52 @@
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="xQs-My-j9R"/>
             </objects>
             <point key="canvasLocation" x="1032" y="518"/>
+        </scene>
+        <!--Places Table View Controller-->
+        <scene sceneID="7cs-jk-cMa">
+            <objects>
+                <tableViewController id="gAF-oK-pc6" customClass="PlacesTableViewController" customModule="PinPlace" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="wDV-tq-XCC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PlaceTableViewCellReuseIdentifier" id="EIJ-Mi-nPj" customClass="PlaceTableViewCell" customModule="PinPlace" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EIJ-Mi-nPj" id="I8K-fg-7RK">
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6b-2d-qsP">
+                                            <rect key="frame" x="8" y="11" width="551" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="R6b-2d-qsP" secondAttribute="trailing" constant="8" id="2Mh-bH-SOf"/>
+                                        <constraint firstItem="R6b-2d-qsP" firstAttribute="top" secondItem="I8K-fg-7RK" secondAttribute="top" constant="11" id="PKb-Ci-PJj"/>
+                                        <constraint firstAttribute="bottom" secondItem="R6b-2d-qsP" secondAttribute="bottom" constant="11" id="pdL-Iy-IpE"/>
+                                        <constraint firstItem="R6b-2d-qsP" firstAttribute="leading" secondItem="I8K-fg-7RK" secondAttribute="leading" constant="8" id="zHv-Ih-igP"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="placeTitleLabel" destination="R6b-2d-qsP" id="TM7-G3-pjS"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="gAF-oK-pc6" id="bYD-CY-3gV"/>
+                            <outlet property="delegate" destination="gAF-oK-pc6" id="FUR-ro-dph"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AMN-Dx-CDv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1748" y="-86"/>
         </scene>
     </scenes>
 </document>

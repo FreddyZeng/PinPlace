@@ -20,8 +20,11 @@
 		AC80F9081D07369C004CF58A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC80F9071D07369C004CF58A /* CoreData.framework */; };
 		AC80F90A1D0736A3004CF58A /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC80F9091D0736A3004CF58A /* CoreMotion.framework */; };
 		AC80F90C1D0736B0004CF58A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC80F90B1D0736B0004CF58A /* MapKit.framework */; };
-		AC80F90E1D074343004CF58A /* PlacesMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F90D1D074343004CF58A /* PlacesMapViewModel.swift */; };
+		AC80F90E1D074343004CF58A /* PlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F90D1D074343004CF58A /* PlacesViewModel.swift */; };
 		AC80F9121D08103C004CF58A /* PlacesDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F9111D08103C004CF58A /* PlacesDataController.swift */; };
+		AC80F9141D082F98004CF58A /* PlacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F9131D082F98004CF58A /* PlacesTableViewController.swift */; };
+		AC80F9161D084802004CF58A /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F9151D084802004CF58A /* PlaceTableViewCell.swift */; };
+		AC80F9191D084884004CF58A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F9181D084884004CF58A /* Constants.swift */; };
 		DDC6E90654B17E7E86BA5332 /* Pods_PinPlace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC661CFEA15F8B4949437EA /* Pods_PinPlace.framework */; };
 		DEF1208402B6B83085F8B266 /* Pods_PinPlaceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDB33BA77A6FAE533E81AD46 /* Pods_PinPlaceTests.framework */; };
 		FAB87580E64121ACCC8F0110 /* Pods_PinPlaceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A3EF14DEFF0944586BB2480 /* Pods_PinPlaceUITests.framework */; };
@@ -69,8 +72,11 @@
 		AC80F9071D07369C004CF58A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		AC80F9091D0736A3004CF58A /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		AC80F90B1D0736B0004CF58A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		AC80F90D1D074343004CF58A /* PlacesMapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesMapViewModel.swift; sourceTree = "<group>"; };
+		AC80F90D1D074343004CF58A /* PlacesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewModel.swift; sourceTree = "<group>"; };
 		AC80F9111D08103C004CF58A /* PlacesDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesDataController.swift; sourceTree = "<group>"; };
+		AC80F9131D082F98004CF58A /* PlacesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesTableViewController.swift; sourceTree = "<group>"; };
+		AC80F9151D084802004CF58A /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
+		AC80F9181D084884004CF58A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C06226618C0DEDFDAE85A811 /* Pods-PinPlaceUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinPlaceUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PinPlaceUITests/Pods-PinPlaceUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C5FF54FC18F352523C071B7B /* Pods-PinPlace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinPlace.release.xcconfig"; path = "Pods/Target Support Files/Pods-PinPlace/Pods-PinPlace.release.xcconfig"; sourceTree = "<group>"; };
 		EDC661CFEA15F8B4949437EA /* Pods_PinPlace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinPlace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,6 +210,8 @@
 			isa = PBXGroup;
 			children = (
 				AC80F9051D0735D3004CF58A /* PlacesMapViewController.swift */,
+				AC80F9131D082F98004CF58A /* PlacesTableViewController.swift */,
+				AC80F9151D084802004CF58A /* PlaceTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -211,7 +219,7 @@
 		AC80F8FB1D0717E9004CF58A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				AC80F90D1D074343004CF58A /* PlacesMapViewModel.swift */,
+				AC80F90D1D074343004CF58A /* PlacesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -235,6 +243,7 @@
 		AC80F90F1D08100B004CF58A /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				AC80F9171D084870004CF58A /* Constants */,
 				AC80F9101D08101C004CF58A /* DAO */,
 			);
 			path = Logic;
@@ -246,6 +255,14 @@
 				AC80F9111D08103C004CF58A /* PlacesDataController.swift */,
 			);
 			path = DAO;
+			sourceTree = "<group>";
+		};
+		AC80F9171D084870004CF58A /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				AC80F9181D084884004CF58A /* Constants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -514,10 +531,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC80F9031D071B87004CF58A /* Place.swift in Sources */,
+				AC80F9141D082F98004CF58A /* PlacesTableViewController.swift in Sources */,
+				AC80F9161D084802004CF58A /* PlaceTableViewCell.swift in Sources */,
 				AC80F9121D08103C004CF58A /* PlacesDataController.swift in Sources */,
 				AC80F9061D0735D3004CF58A /* PlacesMapViewController.swift in Sources */,
+				AC80F9191D084884004CF58A /* Constants.swift in Sources */,
 				AC80F8CB1D070FAD004CF58A /* AppDelegate.swift in Sources */,
-				AC80F90E1D074343004CF58A /* PlacesMapViewModel.swift in Sources */,
+				AC80F90E1D074343004CF58A /* PlacesViewModel.swift in Sources */,
 				AC80F8FE1D071A1D004CF58A /* PinPlace.xcdatamodeld in Sources */,
 				AC80F9041D071B87004CF58A /* _Place.swift in Sources */,
 			);

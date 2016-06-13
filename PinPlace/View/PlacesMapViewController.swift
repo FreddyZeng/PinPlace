@@ -20,7 +20,7 @@ class PlacesMapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     let disposeBag = DisposeBag()
-    let viewModel = PlacesMapViewModel()
+    let viewModel = PlacesViewModel()
     let locationManager = CLLocationManager()
     
     // MARK: - UIViewController
@@ -29,7 +29,7 @@ class PlacesMapViewController: UIViewController {
         super.viewDidLoad()
         
         setupMapForUpdatingUserLocation()
-       
+        
         mapView.addAnnotations(viewModel.places)
         
         longPressGestureRecognizer.rx_event.subscribeNext { [unowned self]longPressGesture in
@@ -38,11 +38,20 @@ class PlacesMapViewController: UIViewController {
             }
             let touchPoint = longPressGesture.locationInView(self.mapView)
             let touchLocationCoordinate2D = self.mapView.convertPoint(touchPoint, toCoordinateFromView: self.mapView)
-            self.viewModel.insertPlaceWithCoordinate(touchLocationCoordinate2D)
+            self.viewModel.appendPlaceWithCoordinate(touchLocationCoordinate2D)
             self.mapView.addAnnotation(self.viewModel.places.last!)
             
-        }.addDisposableTo(disposeBag)
+            }.addDisposableTo(disposeBag)
         
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == SegueIdentifier.ShowPopover.rawValue {
+            guard let destVC = segue.destinationViewController.popoverPresentationController else {
+                return
+            }
+            destVC.delegate = self
+        }
     }
     
     // MARK: - Private
@@ -59,4 +68,10 @@ class PlacesMapViewController: UIViewController {
 
 extension PlacesMapViewController: CLLocationManagerDelegate {
     
+}
+
+extension PlacesMapViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .None
+    }
 }
