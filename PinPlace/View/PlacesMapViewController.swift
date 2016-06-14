@@ -84,6 +84,13 @@ extension PlacesMapViewController: MKMapViewDelegate {
         placeAnnotationView.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
         return placeAnnotationView
     }
+    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if view.annotation is Place {
+            //self.selectedPlace = view.annotation
+            self.performSegueWithIdentifier(SegueIdentifier.ShowPlaceDetails.rawValue, sender: self)
+        }
+    }
 }
 
 // MARK: - UIPopoverPresentationControllerDelegate

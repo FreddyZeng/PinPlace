@@ -9,5 +9,6 @@
 import Foundation
 
 enum SegueIdentifier: String {
-    case ShowPopover = "showPopover"
+    case ShowPopover = "ShowPopover"
+    case ShowPlaceDetails = "ShowPlaceDetails"
 }
