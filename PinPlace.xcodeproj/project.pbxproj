@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC40CB0A1D105B4400D01B9F /* PlaceDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40CB091D105B4400D01B9F /* PlaceDetailsViewModel.swift */; };
 		AC73860B1D100AE400B0AE24 /* PlaceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73860A1D100AE400B0AE24 /* PlaceDetailsViewController.swift */; };
 		AC80F8CB1D070FAD004CF58A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F8CA1D070FAD004CF58A /* AppDelegate.swift */; };
 		AC80F8D01D070FAD004CF58A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC80F8CE1D070FAD004CF58A /* Main.storyboard */; };
@@ -54,6 +55,7 @@
 		3F678259541D4605B8EA0B34 /* Pods-PinPlace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinPlace.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PinPlace/Pods-PinPlace.debug.xcconfig"; sourceTree = "<group>"; };
 		6F2507D1E84374F1E0DC5B99 /* Pods-PinPlaceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinPlaceTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PinPlaceTests/Pods-PinPlaceTests.release.xcconfig"; sourceTree = "<group>"; };
 		8EF5ED12A2697CC255A9FA6D /* Pods-PinPlaceUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinPlaceUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PinPlaceUITests/Pods-PinPlaceUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AC40CB091D105B4400D01B9F /* PlaceDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetailsViewModel.swift; sourceTree = "<group>"; };
 		AC73860A1D100AE400B0AE24 /* PlaceDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetailsViewController.swift; sourceTree = "<group>"; };
 		AC80F8C71D070FAD004CF58A /* PinPlace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinPlace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC80F8CA1D070FAD004CF58A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				AC80F90D1D074343004CF58A /* PlacesViewModel.swift */,
+				AC40CB091D105B4400D01B9F /* PlaceDetailsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				AC80F9161D084802004CF58A /* PlaceTableViewCell.swift in Sources */,
 				AC73860B1D100AE400B0AE24 /* PlaceDetailsViewController.swift in Sources */,
 				AC80F9121D08103C004CF58A /* PlacesDataController.swift in Sources */,
+				AC40CB0A1D105B4400D01B9F /* PlaceDetailsViewModel.swift in Sources */,
 				AC80F9061D0735D3004CF58A /* PlacesMapViewController.swift in Sources */,
 				AC80F9191D084884004CF58A /* Constants.swift in Sources */,
 				AC80F8CB1D070FAD004CF58A /* AppDelegate.swift in Sources */,

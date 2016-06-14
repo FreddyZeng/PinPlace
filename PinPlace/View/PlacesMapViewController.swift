@@ -32,7 +32,7 @@ class PlacesMapViewController: UIViewController {
         
         mapView.addAnnotations(viewModel.places)
         
-        longPressGestureRecognizer.rx_event.subscribeNext { [unowned self]longPressGesture in
+        longPressGestureRecognizer.rx_event.subscribeNext { [unowned self] longPressGesture in
             if longPressGesture.state != .Ended {
                 return
             }
@@ -43,6 +43,12 @@ class PlacesMapViewController: UIViewController {
             
             }.addDisposableTo(disposeBag)
         
+        
+        mapView.rx_annotationViewCalloutAccessoryControlTapped.subscribeNext { [unowned self] view, control in
+            if view.annotation is Place {
+                self.performSegueWithIdentifier(SegueIdentifier.ShowPlaceDetails.rawValue, sender: view.annotation)
+            }
+            }.addDisposableTo(disposeBag)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -51,6 +57,13 @@ class PlacesMapViewController: UIViewController {
                 return
             }
             destVC.delegate = self
+        } else if segue.identifier == SegueIdentifier.ShowPlaceDetails.rawValue {
+            guard let place = sender as? Place,
+                  let destinationViewController = segue.destinationViewController as? PlaceDetailsViewController
+                else { return }
+            
+            destinationViewController.viewModel = PlaceDetailsViewModel()
+            destinationViewController.viewModel?.place = place
         }
     }
     
@@ -83,13 +96,6 @@ extension PlacesMapViewController: MKMapViewDelegate {
         placeAnnotationView.canShowCallout = true
         placeAnnotationView.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
         return placeAnnotationView
-    }
-    
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        if view.annotation is Place {
-            //self.selectedPlace = view.annotation
-            self.performSegueWithIdentifier(SegueIdentifier.ShowPlaceDetails.rawValue, sender: self)
-        }
     }
 }
 
