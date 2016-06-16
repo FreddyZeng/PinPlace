@@ -53,13 +53,15 @@ class PlacesMapViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueIdentifier.ShowPopover.rawValue {
-            guard let destVC = segue.destinationViewController.popoverPresentationController else {
-                return
+            guard let destVC = segue.destinationViewController as? PlacesTableViewController,
+                let destPopoverVC = segue.destinationViewController.popoverPresentationController else {
+                    return
             }
-            destVC.delegate = self
+            destVC.viewModel = viewModel
+            destPopoverVC.delegate = self
         } else if segue.identifier == SegueIdentifier.ShowPlaceDetails.rawValue {
             guard let place = sender as? Place,
-                  let destinationViewController = segue.destinationViewController as? PlaceDetailsViewController
+                let destinationViewController = segue.destinationViewController as? PlaceDetailsViewController
                 else { return }
             
             destinationViewController.viewModel = PlaceDetailsViewModel()

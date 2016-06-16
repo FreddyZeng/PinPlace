@@ -12,15 +12,17 @@ import RxCocoa
 
 class PlacesTableViewController: UITableViewController {
     
-    let viewModel = PlacesViewModel()
+    var viewModel: PlacesViewModel?
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.places.count
+        guard let vm = viewModel else { return 0 }
+        return vm.places.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->  UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(PlaceTableViewCell.reuseIdentifier, forIndexPath: indexPath) as! PlaceTableViewCell
-        cell.placeTitleLabel?.text = viewModel.places[indexPath.row].title
+        guard let vm = viewModel else { return cell }
+        cell.placeTitleLabel?.text = vm.places[indexPath.row].title
         return cell
     }
 
