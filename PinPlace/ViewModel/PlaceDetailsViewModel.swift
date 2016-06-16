@@ -11,19 +11,25 @@ import RxSwift
 
 class PlaceDetailsViewModel {
     
-     var place: Place?
+    //MARK: - Properties
     
+    var place: Place?
+    let nearbyVenues =  Variable<[FoursquareVenue]>([FoursquareVenue]())
+    let foursquareWebService = FoursquareWebService()
+    let disposeBag = DisposeBag()
     
-//    var place: Place? {
-//        didSet {
-//            if let title = place?.title {
-//                dispatch_async(dispatch_get_main_queue()) {
-//                    self.placeTitle.onNext(title)
-//                }
-//            }
-//        }
-//    }
-//    
-//    var placeTitle = PublishSubject<String?>()
+    //MARK: - Methods
     
+    func fetchNearbyPlaces(completion: (() -> Void)?) {
+        if let place = place {
+            foursquareWebService.fetchNearbyFoursqareVenues(forPlace: place).subscribeNext {[unowned self] venuesArray  in
+                completion?()
+                self.nearbyVenues.value = venuesArray
+                }.addDisposableTo(disposeBag)
+        }
+    }
+    
+    func savePlaceTitle () {
+        PlacesDataController.sharedInstance.saveChanges()
+    }
 }

@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import PKHUD
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 class PlaceDetailsViewController: UIViewController {
     
@@ -27,38 +29,34 @@ class PlaceDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        viewModel?.placeTitle.bindTo(self.navigationItem.rx_title).addDisposableTo(disposeBag)
-        
-        viewModel?.place?.rx_observe(String.self, "title").subscribeNext() { [unowned self] newValue in
+        viewModel?.place?.rx_observe(String.self, PlaceAttributes.title.rawValue).subscribeNext() { [unowned self] newValue in
             self.navigationItem.title = newValue
+            self.viewModel?.savePlaceTitle()
             }.addDisposableTo(disposeBag)
         
         
-        loadNearbyPlacesButton.rx_tap.subscribeNext() {
-            
-        }.addDisposableTo(disposeBag)
+        loadNearbyPlacesButton.rx_tap.subscribeNext() {[unowned self] in
+            HUD.show(.Progress)
+            self.viewModel?.fetchNearbyPlaces() {
+                HUD.flash(.Success, delay: 1.0)
+            }
+            }.addDisposableTo(disposeBag)
+        
+        
+        viewModel?.nearbyVenues.asObservable().bindTo(tableView.rx_itemsWithCellFactory) { tableView, row, nearbyVenue in
+            var cell = tableView.dequeueReusableCellWithIdentifier("FoursquareVenueCellIdentifier")
+            if cell == nil {
+                cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "FoursquareVenueCellIdentifier")
+            }
+            cell!.textLabel!.text = nearbyVenue.name
+            return cell!
+            }.addDisposableTo(disposeBag)
+        
+        tableView.rx_itemSelected.subscribeNext() { [unowned self] selectedIndexPath in
+            let selectedNearbyVenue = self.viewModel?.nearbyVenues.value[selectedIndexPath.row]
+            self.viewModel?.place?.title = selectedNearbyVenue?.name
+            }.addDisposableTo(disposeBag)
         
     }
     
 }
-
-// MARK: - UITableViewDelegate
-
-extension PlaceDetailsViewController: UITableViewDelegate {
-    
-}
-
-// MARK: - UITableViewDataSource
-
-extension PlaceDetailsViewController: UITableViewDataSource {
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->  UITableViewCell {
-        return UITableViewCell()
-    }
-    
-}
-

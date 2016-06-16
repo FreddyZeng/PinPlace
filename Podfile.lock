@@ -1,6 +1,9 @@
 PODS:
   - Alamofire (3.4.0)
+  - JASON (2.2)
   - JSQCoreDataKit (4.0.2)
+  - ObjectMapper (1.3.0)
+  - PKHUD (3.1.0)
   - RxAlamofire (2.5):
     - RxAlamofire/Core (= 2.5)
   - RxAlamofire/Core (2.5):
@@ -13,6 +16,9 @@ PODS:
   - RxCoreData (0.2.0):
     - RxCocoa (~> 2.5)
     - RxSwift (~> 2.5)
+  - RxDataSources (0.8.1):
+    - RxCocoa (~> 2.2)
+    - RxSwift (~> 2.2)
   - RxGesture (0.1.2):
     - RxCocoa
     - RxSwift
@@ -20,32 +26,37 @@ PODS:
     - RxCocoa (~> 2)
     - RxSwift (~> 2)
   - RxSwift (2.5.0)
-  - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire
+  - JASON
   - JSQCoreDataKit
+  - ObjectMapper
+  - PKHUD
   - RxAlamofire
   - RxBlocking
   - RxCocoa
   - RxCoreData
+  - RxDataSources
   - RxGesture
   - RxMKMapView
   - RxSwift
-  - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  JASON: 0daa2c3ed902ccbfa94d6bb4cb356d252b9607ce
   JSQCoreDataKit: 5ff8701184611be7769926b91a0cba2115e4e69a
+  ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
+  PKHUD: 4167eccdb1b3a892fd80ce2b51cb6ba412a889ab
   RxAlamofire: b4572a077b6b2410c8732a27266299df4c00736e
   RxBlocking: 595d9ab56dde6b00beaa5aba40e95b150d2135f1
   RxCocoa: e1b1562e57a554d0fb2aabf9d71b637f177257c7
   RxCoreData: db41efb8fd61314b524eea587abc4ed4d9cf381d
+  RxDataSources: 4a87345847d66ef84ecc10bdfa189190f3cd6b12
   RxGesture: 5a5d7ee565fb24b1dbede801e7a98d4169ac5818
   RxMKMapView: 13035c88d8c9212caca7bd4c70b52a2866084d77
   RxSwift: 402b41a50e922a0368fc14cb3bc9f4427920e8ae
-  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 5a752c0670a2e0bf356ad571cd9ecde84debac07
+PODFILE CHECKSUM: 6840040f3d51f27d14a1788bd67bd1c9bb5d021c
 
 COCOAPODS: 1.0.1

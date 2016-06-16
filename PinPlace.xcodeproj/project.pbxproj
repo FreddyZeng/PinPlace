@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		AC40CB0A1D105B4400D01B9F /* PlaceDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40CB091D105B4400D01B9F /* PlaceDetailsViewModel.swift */; };
+		AC40CB0D1D11446C00D01B9F /* FoursquareWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40CB0C1D11446C00D01B9F /* FoursquareWebService.swift */; };
+		AC40CB0F1D1157A800D01B9F /* FoursquareVenue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40CB0E1D1157A800D01B9F /* FoursquareVenue.swift */; };
 		AC73860B1D100AE400B0AE24 /* PlaceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73860A1D100AE400B0AE24 /* PlaceDetailsViewController.swift */; };
 		AC80F8CB1D070FAD004CF58A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F8CA1D070FAD004CF58A /* AppDelegate.swift */; };
 		AC80F8D01D070FAD004CF58A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC80F8CE1D070FAD004CF58A /* Main.storyboard */; };
@@ -56,6 +58,8 @@
 		6F2507D1E84374F1E0DC5B99 /* Pods-PinPlaceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinPlaceTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PinPlaceTests/Pods-PinPlaceTests.release.xcconfig"; sourceTree = "<group>"; };
 		8EF5ED12A2697CC255A9FA6D /* Pods-PinPlaceUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinPlaceUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PinPlaceUITests/Pods-PinPlaceUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AC40CB091D105B4400D01B9F /* PlaceDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetailsViewModel.swift; sourceTree = "<group>"; };
+		AC40CB0C1D11446C00D01B9F /* FoursquareWebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareWebService.swift; sourceTree = "<group>"; };
+		AC40CB0E1D1157A800D01B9F /* FoursquareVenue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareVenue.swift; sourceTree = "<group>"; };
 		AC73860A1D100AE400B0AE24 /* PlaceDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetailsViewController.swift; sourceTree = "<group>"; };
 		AC80F8C71D070FAD004CF58A /* PinPlace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinPlace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC80F8CA1D070FAD004CF58A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +146,14 @@
 				1A3EF14DEFF0944586BB2480 /* Pods_PinPlaceUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AC40CB0B1D11444300D01B9F /* FoursquareWebService */ = {
+			isa = PBXGroup;
+			children = (
+				AC40CB0C1D11446C00D01B9F /* FoursquareWebService.swift */,
+			);
+			path = FoursquareWebService;
 			sourceTree = "<group>";
 		};
 		AC80F8BE1D070FAD004CF58A = {
@@ -234,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				AC80F9001D071B87004CF58A /* Place.swift */,
+				AC40CB0E1D1157A800D01B9F /* FoursquareVenue.swift */,
 			);
 			path = Human;
 			sourceTree = "<group>";
@@ -249,6 +262,7 @@
 		AC80F90F1D08100B004CF58A /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				AC40CB0B1D11444300D01B9F /* FoursquareWebService */,
 				AC80F9171D084870004CF58A /* Constants */,
 				AC80F9101D08101C004CF58A /* DAO */,
 			);
@@ -538,6 +552,7 @@
 			files = (
 				AC80F9031D071B87004CF58A /* Place.swift in Sources */,
 				AC80F9141D082F98004CF58A /* PlacesTableViewController.swift in Sources */,
+				AC40CB0F1D1157A800D01B9F /* FoursquareVenue.swift in Sources */,
 				AC80F9161D084802004CF58A /* PlaceTableViewCell.swift in Sources */,
 				AC73860B1D100AE400B0AE24 /* PlaceDetailsViewController.swift in Sources */,
 				AC80F9121D08103C004CF58A /* PlacesDataController.swift in Sources */,
@@ -548,6 +563,7 @@
 				AC80F90E1D074343004CF58A /* PlacesViewModel.swift in Sources */,
 				AC80F8FE1D071A1D004CF58A /* PinPlace.xcdatamodeld in Sources */,
 				AC80F9041D071B87004CF58A /* _Place.swift in Sources */,
+				AC40CB0D1D11446C00D01B9F /* FoursquareWebService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
