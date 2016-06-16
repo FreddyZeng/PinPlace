@@ -10,20 +10,23 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class PlacesTableViewController: UITableViewController {
+class PlacesTableViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    @IBOutlet var tableView: UITableView!
     var viewModel: PlacesViewModel?
+    let disposeBag = DisposeBag()
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let vm = viewModel else { return 0 }
-        return vm.places.count
-    }
+    // MARK: - UIViewController
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->  UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(PlaceTableViewCell.reuseIdentifier, forIndexPath: indexPath) as! PlaceTableViewCell
-        guard let vm = viewModel else { return cell }
-        cell.placeTitleLabel?.text = vm.places[indexPath.row].title
-        return cell
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        viewModel?.places.asObservable().bindTo(tableView.rx_itemsWithCellFactory) { tableView, row, place in
+            let cell = tableView.dequeueReusableCellWithIdentifier(PlaceTableViewCell.reuseIdentifier) as! PlaceTableViewCell
+            cell.placeTitleLabel.text = place.title
+            return cell
+            }.addDisposableTo(disposeBag)
     }
-
 }

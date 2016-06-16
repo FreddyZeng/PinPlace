@@ -105,11 +105,10 @@
                             </tableViewCell>
                         </prototypes>
                         <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="gAF-oK-pc6" id="bYD-CY-3gV"/>
-                            <outlet property="delegate" destination="gAF-oK-pc6" id="FUR-ro-dph"/>
-                        </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="tableView" destination="wDV-tq-XCC" id="Njs-GZ-CTK"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AMN-Dx-CDv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -30,7 +30,7 @@ class PlacesMapViewController: UIViewController {
         
         setupMapForUpdatingUserLocation()
         
-        mapView.addAnnotations(viewModel.places)
+        mapView.addAnnotations(viewModel.places.value.map{ $0 })
         
         longPressGestureRecognizer.rx_event.subscribeNext { [unowned self] longPressGesture in
             if longPressGesture.state != .Ended {
@@ -39,7 +39,7 @@ class PlacesMapViewController: UIViewController {
             let touchPoint = longPressGesture.locationInView(self.mapView)
             let touchLocationCoordinate2D = self.mapView.convertPoint(touchPoint, toCoordinateFromView: self.mapView)
             self.viewModel.appendPlaceWithCoordinate(touchLocationCoordinate2D)
-            self.mapView.addAnnotation(self.viewModel.places.last!)
+            self.mapView.addAnnotation(self.viewModel.places.value.last!)
             
             }.addDisposableTo(disposeBag)
         

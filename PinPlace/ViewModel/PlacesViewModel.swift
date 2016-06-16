@@ -13,15 +13,15 @@ import RxCoreData
 
 class PlacesViewModel {
     
-    var places = Array<Place>()
+    var places = Variable<[Place]>([Place]())
     
     init() {
-        places = PlacesDataController.sharedInstance.fetchPlaces()
+        places.value.appendContentsOf(PlacesDataController.sharedInstance.fetchPlaces())
     }
     
     func appendPlaceWithCoordinate(coordinate: CLLocationCoordinate2D) {
         guard let newPlace = Place(coordinate: coordinate) else { return }
-        places.append(newPlace)
+        places.value.append(newPlace)
         PlacesDataController.sharedInstance.saveChanges()
     }
 }
