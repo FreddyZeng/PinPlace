@@ -14,7 +14,6 @@ import RxCocoa
 import RxMKMapView
 
 /* TODO:
- -Add Route/Clear Route Mode
  -Update user location
  -Searhcable list of bookmarks
  -Tableview placeholder
@@ -22,15 +21,20 @@ import RxMKMapView
  */
 class PlacesMapViewController: UIViewController {
     
+    private enum AppMode {
+        case Default, Routing
+    }
+    
     // MARK: - Properties
     
+    @IBOutlet weak var routeBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var longPressGestureRecognizer: UILongPressGestureRecognizer!
     @IBOutlet weak var mapView: MKMapView!
     
     let disposeBag = DisposeBag()
     let viewModel = PlacesMapViewModel()
     let locationManager = CLLocationManager()
-    
+    private var appMode: AppMode = .Default
     
     
     deinit {
@@ -70,6 +74,15 @@ class PlacesMapViewController: UIViewController {
             }
             }.addDisposableTo(disposeBag)
         
+        routeBarButtonItem.rx_tap.subscribeNext { [unowned self] in
+            switch self.appMode {
+            case .Default:
+                self.performSegueWithIdentifier(SegueIdentifier.ShowPopover.rawValue, sender: self)
+            case .Routing:
+                self.switchAppToNormalMode()
+            }
+        }.addDisposableTo(disposeBag)
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -97,6 +110,8 @@ class PlacesMapViewController: UIViewController {
     // MARK: - NSNotificationCenter Handlers
     
     func buildRoute() {
+        appMode = .Routing
+        routeBarButtonItem.title = "Clear Route"
         viewModel.routeDrawer.mapView = self.mapView
         HUD.show(.Progress)
         viewModel.buildRoute() { errorMessage in
@@ -122,6 +137,14 @@ class PlacesMapViewController: UIViewController {
         locationManager.startUpdatingLocation()
         mapView.showsUserLocation = true
         mapView.showsPointsOfInterest = true
+    }
+    
+    private func switchAppToNormalMode() {
+        self.appMode = .Default
+        self.routeBarButtonItem.title = "Route"
+        self.viewModel.routeDrawer.dismissCurrentRoute()
+        viewModel.fetchPlaces()
+        mapView.addAnnotations(viewModel.places.value)
     }
 }
 

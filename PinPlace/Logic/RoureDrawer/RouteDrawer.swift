@@ -34,14 +34,14 @@ class RouteDrawer {
     }
     
     func dismissCurrentRoute() {
-        guard let directions = currentRouteDirections else {return}
-        if directions.calculating {
-            directions.cancel()
+        if let directions = currentRouteDirections {
+            if directions.calculating {
+                directions.cancel()
+            }
         }
         mapView!.removeAnnotations(mapView!.annotations)
         mapView!.removeOverlays(mapView!.overlays)
         currentRouteDirections = nil
-        targetPlace = nil
     }
     
     // MARK: - Private

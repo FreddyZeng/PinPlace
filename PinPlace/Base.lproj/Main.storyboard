@@ -50,19 +50,17 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Places Map" id="GDH-Me-Tye">
-                        <barButtonItem key="leftBarButtonItem" title="Route" id="rfJ-et-ssa">
-                            <connections>
-                                <segue destination="gAF-oK-pc6" kind="popoverPresentation" identifier="ShowPopover" popoverAnchorBarButtonItem="rfJ-et-ssa" id="bfs-ba-z3e">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Route" id="rfJ-et-ssa"/>
                         <barButtonItem key="rightBarButtonItem" title="Bookmarks" id="RmZ-sY-gmh"/>
                     </navigationItem>
                     <connections>
                         <outlet property="longPressGestureRecognizer" destination="xQs-My-j9R" id="2wk-OO-16W"/>
                         <outlet property="mapView" destination="NnK-SD-MYD" id="A5C-jW-bYZ"/>
+                        <outlet property="routeBarButtonItem" destination="rfJ-et-ssa" id="QMd-3s-XE9"/>
                         <segue destination="bhG-Fl-i9g" kind="show" identifier="ShowPlaceDetails" id="fkL-SF-pFo"/>
+                        <segue destination="gAF-oK-pc6" kind="popoverPresentation" identifier="ShowPopover" popoverAnchorBarButtonItem="rfJ-et-ssa" id="iKK-7a-zoo">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q1k-3w-Bqt" userLabel="First Responder" sceneMemberID="firstResponder"/>
