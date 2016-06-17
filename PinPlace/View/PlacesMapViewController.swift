@@ -41,6 +41,10 @@ class PlacesMapViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self,
                                                             name: NotificationName.BuildRoute.rawValue,
                                                             object: nil)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self,
+                                                            name: NotificationName.PlaceDeleted.rawValue,
+                                                            object: nil)
     }
     
     // MARK: - UIViewController
@@ -51,6 +55,11 @@ class PlacesMapViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self,
                                                          selector: #selector(buildRoute),
                                                          name: NotificationName.BuildRoute.rawValue,
+                                                         object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: #selector(placeDeletedNotification),
+                                                         name: NotificationName.PlaceDeleted.rawValue,
                                                          object: nil)
         
         setupMapForUpdatingUserLocation()
@@ -87,8 +96,11 @@ class PlacesMapViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.fetchPlaces()
-        mapView.addAnnotations(viewModel.places.value)
+        
+        if appMode == .Default {
+            viewModel.fetchPlaces()
+            mapView.addAnnotations(viewModel.places.value)
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -124,6 +136,14 @@ class PlacesMapViewController: UIViewController {
                 dispatch_async(dispatch_get_main_queue()) {
                     self.presentViewController(alertController, animated: true, completion: nil)
                 }
+            }
+        }
+    }
+    
+    func placeDeletedNotification(notification: NSNotification) {
+        if let notificationObject = notification.object as? Place {
+            if notificationObject == self.viewModel.selectedTargetPlace! && appMode == .Routing {
+                self.switchAppToNormalMode()
             }
         }
     }

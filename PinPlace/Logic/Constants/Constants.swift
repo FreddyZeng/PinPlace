@@ -15,4 +15,5 @@ enum SegueIdentifier: String {
 
 enum NotificationName: String {
     case BuildRoute = "BuildRoute"
+    case PlaceDeleted = "PlaceDeleted"
 }
