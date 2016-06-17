@@ -41,6 +41,11 @@ class PlaceDetailsViewController: UIViewController {
             }
             }.addDisposableTo(disposeBag)
         
+        centerOnMapButton.rx_tap.subscribeNext { [unowned self] in
+            NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.CenterPlace.rawValue, object: self.viewModel?.place)
+            self.navigationController?.popToRootViewControllerAnimated(true)
+        }.addDisposableTo(disposeBag)
+        
         buildRouteButton.rx_tap.subscribeNext {[unowned self] in
             if let mapViewController = self.navigationController?.viewControllers.first as? PlacesMapViewController {
                 mapViewController.viewModel.selectedTargetPlace = self.viewModel?.place

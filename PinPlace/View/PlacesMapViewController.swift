@@ -16,7 +16,6 @@ import RxMKMapView
 /* TODO:
  -Searhcable list of bookmarks
  -Tableview placeholder
- -finish details screen functionality
  */
 class PlacesMapViewController: UIViewController {
     
@@ -38,6 +37,10 @@ class PlacesMapViewController: UIViewController {
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self,
+                                                            name: NotificationName.CenterPlace.rawValue,
+                                                            object: nil)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self,
                                                             name: NotificationName.BuildRoute.rawValue,
                                                             object: nil)
         
@@ -50,6 +53,11 @@ class PlacesMapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: #selector(centerPlaceNotification),
+                                                         name: NotificationName.CenterPlace.rawValue,
+                                                         object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self,
                                                          selector: #selector(buildRoute),
@@ -153,6 +161,19 @@ class PlacesMapViewController: UIViewController {
             if notificationObject == self.viewModel.selectedTargetPlace! && appMode == .Routing {
                 self.switchAppToNormalMode()
             }
+        }
+    }
+    
+    func centerPlaceNotification(notification: NSNotification) {
+        if let notificationObject = notification.object as? Place {
+            if self.appMode != .Default {
+                switchAppToNormalMode()
+            }
+            guard let location = notificationObject.location as? CLLocation else {return}
+            let centerCoordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            var region = self.mapView.region
+            region.center = centerCoordinate
+            self.mapView.setRegion(region, animated: true)
         }
     }
     
