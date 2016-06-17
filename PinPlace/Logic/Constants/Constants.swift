@@ -12,3 +12,7 @@ enum SegueIdentifier: String {
     case ShowPopover = "ShowPopover"
     case ShowPlaceDetails = "ShowPlaceDetails"
 }
+
+enum NotificationName: String {
+    case BuildRoute = "BuildRoute"
+}

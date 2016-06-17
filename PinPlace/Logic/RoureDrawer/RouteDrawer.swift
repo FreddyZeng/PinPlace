@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-private enum RouteDrawerError: ErrorType {
+enum RouteDrawerError: ErrorType {
     case TargetPlaceIsNotProvided
     case DestinationCoordiateMissed
     case UserLocationIsDisabled
@@ -19,14 +19,9 @@ private enum RouteDrawerError: ErrorType {
 class RouteDrawer {
     
     var targetPlace: Place?
-    let mapView: MKMapView
+    var mapView: MKMapView?
     
     private var currentRouteDirections: MKDirections?
-    
-    init(mapView: MKMapView, targetPlace: Place? = nil) {
-        self.mapView = mapView
-        self.targetPlace = targetPlace
-    }
     
     // MARK: - Public
     
@@ -43,8 +38,8 @@ class RouteDrawer {
         if directions.calculating {
             directions.cancel()
         }
-        mapView.removeAnnotations(mapView.annotations)
-        mapView.removeOverlays(mapView.overlays)
+        mapView!.removeAnnotations(mapView!.annotations)
+        mapView!.removeOverlays(mapView!.overlays)
         currentRouteDirections = nil
         targetPlace = nil
     }
@@ -60,12 +55,12 @@ class RouteDrawer {
             throw RouteDrawerError.DestinationCoordiateMissed
         }
         
-        guard mapView.userLocation.location != nil else {
+        guard mapView!.userLocation.location != nil else {
             throw RouteDrawerError.UserLocationIsDisabled
         }
         
         dismissCurrentRoute()
-        mapView.addAnnotation(place)
+        mapView!.addAnnotation(place)
         
         let directionsRequest = MKDirectionsRequest()
         directionsRequest.source = MKMapItem.mapItemForCurrentLocation()
@@ -78,7 +73,7 @@ class RouteDrawer {
         
         currentRouteDirections = MKDirections(request: directionsRequest)
         
-        currentRouteDirections?.calculateDirectionsWithCompletionHandler() { [unowned self] directionsResponse, error in
+        currentRouteDirections?.calculateDirectionsWithCompletionHandler() { directionsResponse, error in
             dispatch_async(dispatch_get_main_queue()) {
                 if error != nil && directionsResponse == nil {
                     completion(error)
@@ -95,11 +90,11 @@ class RouteDrawer {
     private func drawRoute(mkDirectionsResponse: MKDirectionsResponse) {
         var totalRect = MKMapRectNull
         for route in mkDirectionsResponse.routes {
-            mapView.addOverlay(route.polyline, level: .AboveRoads)
+            mapView!.addOverlay(route.polyline, level: .AboveRoads)
             let polygon = MKPolygon(points: route.polyline.points(), count: route.polyline.pointCount)
             let routeRect = polygon.boundingMapRect
             totalRect = MKMapRectUnion(totalRect, routeRect)
         }
-        mapView.setVisibleMapRect(totalRect, edgePadding: UIEdgeInsetsMake(30, 30, 30, 30), animated: true)
+        mapView!.setVisibleMapRect(totalRect, edgePadding: UIEdgeInsetsMake(30, 30, 30, 30), animated: true)
     }
 }
