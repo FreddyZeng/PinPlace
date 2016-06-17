@@ -10,6 +10,7 @@
 		AC40CB0A1D105B4400D01B9F /* PlaceDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40CB091D105B4400D01B9F /* PlaceDetailsViewModel.swift */; };
 		AC40CB0D1D11446C00D01B9F /* FoursquareWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40CB0C1D11446C00D01B9F /* FoursquareWebService.swift */; };
 		AC40CB0F1D1157A800D01B9F /* FoursquareVenue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40CB0E1D1157A800D01B9F /* FoursquareVenue.swift */; };
+		AC40CB121D13E79500D01B9F /* RouteDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40CB111D13E79500D01B9F /* RouteDrawer.swift */; };
 		AC73860B1D100AE400B0AE24 /* PlaceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73860A1D100AE400B0AE24 /* PlaceDetailsViewController.swift */; };
 		AC80F8CB1D070FAD004CF58A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F8CA1D070FAD004CF58A /* AppDelegate.swift */; };
 		AC80F8D01D070FAD004CF58A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC80F8CE1D070FAD004CF58A /* Main.storyboard */; };
@@ -60,6 +61,7 @@
 		AC40CB091D105B4400D01B9F /* PlaceDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetailsViewModel.swift; sourceTree = "<group>"; };
 		AC40CB0C1D11446C00D01B9F /* FoursquareWebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareWebService.swift; sourceTree = "<group>"; };
 		AC40CB0E1D1157A800D01B9F /* FoursquareVenue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareVenue.swift; sourceTree = "<group>"; };
+		AC40CB111D13E79500D01B9F /* RouteDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDrawer.swift; sourceTree = "<group>"; };
 		AC73860A1D100AE400B0AE24 /* PlaceDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetailsViewController.swift; sourceTree = "<group>"; };
 		AC80F8C71D070FAD004CF58A /* PinPlace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinPlace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC80F8CA1D070FAD004CF58A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +156,14 @@
 				AC40CB0C1D11446C00D01B9F /* FoursquareWebService.swift */,
 			);
 			path = FoursquareWebService;
+			sourceTree = "<group>";
+		};
+		AC40CB101D13E77E00D01B9F /* RoureDrawer */ = {
+			isa = PBXGroup;
+			children = (
+				AC40CB111D13E79500D01B9F /* RouteDrawer.swift */,
+			);
+			path = RoureDrawer;
 			sourceTree = "<group>";
 		};
 		AC80F8BE1D070FAD004CF58A = {
@@ -262,6 +272,7 @@
 		AC80F90F1D08100B004CF58A /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				AC40CB101D13E77E00D01B9F /* RoureDrawer */,
 				AC40CB0B1D11444300D01B9F /* FoursquareWebService */,
 				AC80F9171D084870004CF58A /* Constants */,
 				AC80F9101D08101C004CF58A /* DAO */,
@@ -554,6 +565,7 @@
 				AC80F9141D082F98004CF58A /* PlacesTableViewController.swift in Sources */,
 				AC40CB0F1D1157A800D01B9F /* FoursquareVenue.swift in Sources */,
 				AC80F9161D084802004CF58A /* PlaceTableViewCell.swift in Sources */,
+				AC40CB121D13E79500D01B9F /* RouteDrawer.swift in Sources */,
 				AC73860B1D100AE400B0AE24 /* PlaceDetailsViewController.swift in Sources */,
 				AC80F9121D08103C004CF58A /* PlacesDataController.swift in Sources */,
 				AC40CB0A1D105B4400D01B9F /* PlaceDetailsViewModel.swift in Sources */,

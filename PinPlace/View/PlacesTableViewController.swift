@@ -28,5 +28,9 @@ class PlacesTableViewController: UIViewController {
             cell.placeTitleLabel.text = place.title
             return cell
             }.addDisposableTo(disposeBag)
+        
+        tableView.rx_itemSelected.subscribeNext() { [unowned self] indexPath in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }.addDisposableTo(disposeBag)
     }
 }
