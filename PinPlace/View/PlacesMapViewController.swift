@@ -14,7 +14,6 @@ import RxCocoa
 import RxMKMapView
 
 /* TODO:
- -Update user location
  -Searhcable list of bookmarks
  -Tableview placeholder
  -finish details screen functionality
@@ -75,13 +74,22 @@ class PlacesMapViewController: UIViewController {
             
             }.addDisposableTo(disposeBag)
         
-        
         mapView.rx_annotationViewCalloutAccessoryControlTapped.subscribeNext { [unowned self] view, control in
             if view.annotation is Place {
                 self.mapView.deselectAnnotation(view.annotation, animated: false)
                 self.performSegueWithIdentifier(SegueIdentifier.ShowPlaceDetails.rawValue, sender: view.annotation)
             }
             }.addDisposableTo(disposeBag)
+        
+        mapView.rx_didUpdateUserLocation.subscribeNext { [unowned self] _ in
+            guard let userLocation = self.mapView.userLocation.location else { return }
+            let coordinateSpan = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+            let locationCoordinate = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude,
+                                                           longitude: userLocation.coordinate.longitude)
+            
+            let region = MKCoordinateRegion(center: locationCoordinate, span: coordinateSpan)
+            self.mapView.setRegion(region, animated: true)
+        }.addDisposableTo(disposeBag)
         
         routeBarButtonItem.rx_tap.subscribeNext { [unowned self] in
             switch self.appMode {
