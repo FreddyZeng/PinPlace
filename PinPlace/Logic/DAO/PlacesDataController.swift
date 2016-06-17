@@ -48,7 +48,7 @@ class PlacesDataController {
     
     func saveChanges() {
         do {
-            try stack!.mainContext.save()
+            try stack?.mainContext.save()
         } catch {
             
         }
@@ -70,5 +70,17 @@ class PlacesDataController {
         }
         
         return result
+    }
+    
+    func deletePlace(place: Place) {
+        guard let stack = self.stack else {
+            return
+        }
+        stack.mainContext.deleteObject(place)
+        do {
+            try stack.mainContext.save()
+        } catch {
+            
+        }
     }
 }

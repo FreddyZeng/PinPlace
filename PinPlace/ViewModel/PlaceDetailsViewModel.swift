@@ -32,4 +32,9 @@ class PlaceDetailsViewModel {
     func savePlaceTitle () {
         PlacesDataController.sharedInstance.saveChanges()
     }
+    
+    func deletePlace() {
+        guard let place = place else { return }
+        PlacesDataController.sharedInstance.deletePlace(place)
+    }
 }

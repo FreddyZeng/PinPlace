@@ -30,8 +30,6 @@ class PlacesMapViewController: UIViewController {
         
         setupMapForUpdatingUserLocation()
         
-        mapView.addAnnotations(viewModel.places.value.map{ $0 })
-        
         longPressGestureRecognizer.rx_event.subscribeNext { [unowned self] longPressGesture in
             if longPressGesture.state != .Ended {
                 return
@@ -46,9 +44,15 @@ class PlacesMapViewController: UIViewController {
         
         mapView.rx_annotationViewCalloutAccessoryControlTapped.subscribeNext { [unowned self] view, control in
             if view.annotation is Place {
+                self.mapView.deselectAnnotation(view.annotation, animated: true)
                 self.performSegueWithIdentifier(SegueIdentifier.ShowPlaceDetails.rawValue, sender: view.annotation)
             }
             }.addDisposableTo(disposeBag)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        mapView.addAnnotations(viewModel.fetchPlaces())
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

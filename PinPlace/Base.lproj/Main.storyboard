@@ -114,7 +114,7 @@
             </objects>
             <point key="canvasLocation" x="1852" y="-94"/>
         </scene>
-        <!--Place Details View Controller-->
+        <!--Title-->
         <scene sceneID="2H6-0P-AtF">
             <objects>
                 <viewController id="bhG-Fl-i9g" customClass="PlaceDetailsViewController" customModule="PinPlace" customModuleProvider="target" sceneMemberID="viewController">
@@ -138,7 +138,7 @@
                                 <rect key="frame" x="20" y="148" width="560" height="30"/>
                                 <state key="normal" title="Load nearby places"/>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sFl-Zw-L1r">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sFl-Zw-L1r">
                                 <rect key="frame" x="0.0" y="186" width="600" height="414"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -182,11 +182,17 @@
                             <constraint firstItem="7WQ-qt-0jK" firstAttribute="top" secondItem="sFl-Zw-L1r" secondAttribute="bottom" id="r9k-Kk-O6e"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="JAi-v5-q7z">
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="k5d-xH-54S"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="buildRouteButton" destination="S2T-uP-7lF" id="AAh-hJ-Si0"/>
                         <outlet property="centerOnMapButton" destination="ouK-IE-Tx2" id="mgk-jM-vyF"/>
                         <outlet property="loadNearbyPlacesButton" destination="HcT-lZ-Ram" id="Eo1-jj-1jx"/>
                         <outlet property="tableView" destination="sFl-Zw-L1r" id="gNt-To-hEy"/>
+                        <outlet property="trashBarButtonItem" destination="k5d-xH-54S" id="XHY-Eq-cNy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MI5-Fh-0g1" userLabel="First Responder" sceneMemberID="firstResponder"/>

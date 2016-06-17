@@ -10,7 +10,7 @@ public class Place: _Place {
         guard let entity = Place.entity(managedObjectContext) else { return nil }
         self.init(entity: entity, insertIntoManagedObjectContext: managedObjectContext)
     }
-
+    
     public convenience init?(coordinate: CLLocationCoordinate2D, title: String? = "Unnamed") {
         self.init(managedObjectContext: PlacesDataController.sharedInstance.stack!.mainContext)
         self.title = title
@@ -21,7 +21,10 @@ public class Place: _Place {
 extension Place: MKAnnotation {
     public var coordinate: CLLocationCoordinate2D {
         get {
-            let location = self.location as! CLLocation
+            guard let location =  self.location as? CLLocation else {
+                return CLLocationCoordinate2D()
+            }
+            
             return location.coordinate
         }
     }

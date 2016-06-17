@@ -9,14 +9,14 @@
 import Foundation
 import CoreLocation
 import RxSwift
-import RxCoreData
 
 class PlacesViewModel {
     
-    var places = Variable<[Place]>([Place]())
+    private(set) var places = Variable<[Place]>([Place]())
     
-    init() {
+    func fetchPlaces() -> [Place] {
         places.value.appendContentsOf(PlacesDataController.sharedInstance.fetchPlaces())
+        return places.value.map{$0}
     }
     
     func appendPlaceWithCoordinate(coordinate: CLLocationCoordinate2D) {

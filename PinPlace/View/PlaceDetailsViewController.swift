@@ -10,7 +10,6 @@ import UIKit
 import PKHUD
 import RxSwift
 import RxCocoa
-import RxDataSources
 
 class PlaceDetailsViewController: UIViewController {
     
@@ -20,6 +19,7 @@ class PlaceDetailsViewController: UIViewController {
     @IBOutlet weak var buildRouteButton: UIButton!
     @IBOutlet weak var loadNearbyPlacesButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var trashBarButtonItem: UIBarButtonItem!
     
     var viewModel: PlaceDetailsViewModel?
     let disposeBag = DisposeBag()
@@ -34,7 +34,6 @@ class PlaceDetailsViewController: UIViewController {
             self.viewModel?.savePlaceTitle()
             }.addDisposableTo(disposeBag)
         
-        
         loadNearbyPlacesButton.rx_tap.subscribeNext() {[unowned self] in
             HUD.show(.Progress)
             self.viewModel?.fetchNearbyPlaces() {
@@ -42,6 +41,21 @@ class PlaceDetailsViewController: UIViewController {
             }
             }.addDisposableTo(disposeBag)
         
+        trashBarButtonItem.rx_tap.subscribeNext(){ _ in
+            let alertController = UIAlertController(title: "", message: "Delete this place?", preferredStyle: .Alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+            }
+            alertController.addAction(cancelAction)
+            
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
+                self.viewModel?.deletePlace()
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+            alertController.addAction(OKAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }.addDisposableTo(disposeBag)
         
         viewModel?.nearbyVenues.asObservable().bindTo(tableView.rx_itemsWithCellFactory) { tableView, row, nearbyVenue in
             var cell = tableView.dequeueReusableCellWithIdentifier("FoursquareVenueCellIdentifier")
