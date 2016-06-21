@@ -7,10 +7,8 @@
 //
 
 import Foundation
-import Alamofire
 import JASON
 import RxAlamofire
-import RxCocoa
 import RxSwift
 
 class FoursquareWebService {

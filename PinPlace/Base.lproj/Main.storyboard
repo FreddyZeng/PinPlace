@@ -51,7 +51,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Places Map" id="GDH-Me-Tye">
                         <barButtonItem key="leftBarButtonItem" title="Route" id="rfJ-et-ssa"/>
-                        <barButtonItem key="rightBarButtonItem" title="Bookmarks" id="RmZ-sY-gmh"/>
+                        <barButtonItem key="rightBarButtonItem" title="Bookmarks" id="RmZ-sY-gmh">
+                            <connections>
+                                <segue destination="7k3-AZ-cks" kind="show" id="BX4-CB-rGh"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="longPressGestureRecognizer" destination="xQs-My-j9R" id="2wk-OO-16W"/>
@@ -68,10 +72,10 @@
             </objects>
             <point key="canvasLocation" x="1032" y="518"/>
         </scene>
-        <!--Places Table View Controller-->
+        <!--Places Popover Table View Controller-->
         <scene sceneID="7cs-jk-cMa">
             <objects>
-                <tableViewController id="gAF-oK-pc6" customClass="PlacesTableViewController" customModule="PinPlace" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="gAF-oK-pc6" customClass="PlacesPopoverTableViewController" customModule="PinPlace" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="wDV-tq-XCC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -111,7 +115,64 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AMN-Dx-CDv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1852" y="-94"/>
+            <point key="canvasLocation" x="1852" y="14"/>
+        </scene>
+        <!--Places List-->
+        <scene sceneID="0GH-Km-ofR">
+            <objects>
+                <viewController id="7k3-AZ-cks" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DvA-dQ-aDD"/>
+                        <viewControllerLayoutGuide type="bottom" id="RFM-Xv-Lxe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="brU-em-SY2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="IQz-gP-3J9">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="34" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nN2-wI-Q7h">
+                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlaceTableViewCellReuseIdentifier" textLabel="1l2-3q-a2q" style="IBUITableViewCellStyleDefault" id="rc4-Px-9rP" customClass="PlaceTableViewCell" customModule="PinPlace" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="34"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rc4-Px-9rP" id="yzo-Ff-lmC">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="33"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1l2-3q-a2q">
+                                                    <rect key="frame" x="15" y="0.0" width="550" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="RFM-Xv-Lxe" firstAttribute="top" secondItem="nN2-wI-Q7h" secondAttribute="bottom" id="15Q-p1-0WE"/>
+                            <constraint firstItem="nN2-wI-Q7h" firstAttribute="top" secondItem="IQz-gP-3J9" secondAttribute="bottom" id="4bQ-p7-gVD"/>
+                            <constraint firstAttribute="trailing" secondItem="nN2-wI-Q7h" secondAttribute="trailing" id="9FY-zD-EcA"/>
+                            <constraint firstItem="IQz-gP-3J9" firstAttribute="leading" secondItem="brU-em-SY2" secondAttribute="leading" id="B5d-Oh-7pF"/>
+                            <constraint firstItem="nN2-wI-Q7h" firstAttribute="leading" secondItem="brU-em-SY2" secondAttribute="leading" id="c3L-sy-gJz"/>
+                            <constraint firstItem="IQz-gP-3J9" firstAttribute="top" secondItem="DvA-dQ-aDD" secondAttribute="bottom" id="iqY-gX-1zS"/>
+                            <constraint firstAttribute="trailing" secondItem="IQz-gP-3J9" secondAttribute="trailing" id="p45-rZ-Hos"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Places List" id="qIW-Sg-r46"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="841-Jn-NCm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1032" y="1318"/>
         </scene>
         <!--Title-->
         <scene sceneID="2H6-0P-AtF">

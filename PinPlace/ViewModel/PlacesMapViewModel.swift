@@ -25,11 +25,7 @@ class PlacesMapViewModel: PlacesViewModel {
         routeDrawer.targetPlace = selectedTargetPlace
         do {
             try routeDrawer.showRouteToTargetPlace() { error in
-                if error != nil {
-                    completion(error?.localizedDescription)
-                } else {
-                    completion(nil)
-                }
+                completion(error?.localizedDescription)
             }
         } catch RouteDrawerError.DestinationCoordiateMissed {
             completion("Destination coordiate missed.")

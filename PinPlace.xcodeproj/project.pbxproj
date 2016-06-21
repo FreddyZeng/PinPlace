@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC001EBA1D192A44009B4176 /* PlacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC001EB91D192A44009B4176 /* PlacesTableViewController.swift */; };
+		AC001EBC1D192A5D009B4176 /* PlacesTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC001EBB1D192A5D009B4176 /* PlacesTableViewModel.swift */; };
 		AC40CB0A1D105B4400D01B9F /* PlaceDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40CB091D105B4400D01B9F /* PlaceDetailsViewModel.swift */; };
 		AC40CB0D1D11446C00D01B9F /* FoursquareWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40CB0C1D11446C00D01B9F /* FoursquareWebService.swift */; };
 		AC40CB0F1D1157A800D01B9F /* FoursquareVenue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40CB0E1D1157A800D01B9F /* FoursquareVenue.swift */; };
@@ -28,7 +30,7 @@
 		AC80F90C1D0736B0004CF58A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC80F90B1D0736B0004CF58A /* MapKit.framework */; };
 		AC80F90E1D074343004CF58A /* PlacesMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F90D1D074343004CF58A /* PlacesMapViewModel.swift */; };
 		AC80F9121D08103C004CF58A /* PlacesDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F9111D08103C004CF58A /* PlacesDataController.swift */; };
-		AC80F9141D082F98004CF58A /* PlacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F9131D082F98004CF58A /* PlacesTableViewController.swift */; };
+		AC80F9141D082F98004CF58A /* PlacesPopoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F9131D082F98004CF58A /* PlacesPopoverTableViewController.swift */; };
 		AC80F9161D084802004CF58A /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F9151D084802004CF58A /* PlaceTableViewCell.swift */; };
 		AC80F9191D084884004CF58A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F9181D084884004CF58A /* Constants.swift */; };
 		DDC6E90654B17E7E86BA5332 /* Pods_PinPlace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC661CFEA15F8B4949437EA /* Pods_PinPlace.framework */; };
@@ -59,6 +61,8 @@
 		3F678259541D4605B8EA0B34 /* Pods-PinPlace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinPlace.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PinPlace/Pods-PinPlace.debug.xcconfig"; sourceTree = "<group>"; };
 		6F2507D1E84374F1E0DC5B99 /* Pods-PinPlaceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinPlaceTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PinPlaceTests/Pods-PinPlaceTests.release.xcconfig"; sourceTree = "<group>"; };
 		8EF5ED12A2697CC255A9FA6D /* Pods-PinPlaceUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinPlaceUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PinPlaceUITests/Pods-PinPlaceUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AC001EB91D192A44009B4176 /* PlacesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesTableViewController.swift; sourceTree = "<group>"; };
+		AC001EBB1D192A5D009B4176 /* PlacesTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesTableViewModel.swift; sourceTree = "<group>"; };
 		AC40CB091D105B4400D01B9F /* PlaceDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetailsViewModel.swift; sourceTree = "<group>"; };
 		AC40CB0C1D11446C00D01B9F /* FoursquareWebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareWebService.swift; sourceTree = "<group>"; };
 		AC40CB0E1D1157A800D01B9F /* FoursquareVenue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareVenue.swift; sourceTree = "<group>"; };
@@ -86,7 +90,7 @@
 		AC80F90B1D0736B0004CF58A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		AC80F90D1D074343004CF58A /* PlacesMapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesMapViewModel.swift; sourceTree = "<group>"; };
 		AC80F9111D08103C004CF58A /* PlacesDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesDataController.swift; sourceTree = "<group>"; };
-		AC80F9131D082F98004CF58A /* PlacesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesTableViewController.swift; sourceTree = "<group>"; };
+		AC80F9131D082F98004CF58A /* PlacesPopoverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesPopoverTableViewController.swift; sourceTree = "<group>"; };
 		AC80F9151D084802004CF58A /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
 		AC80F9181D084884004CF58A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C06226618C0DEDFDAE85A811 /* Pods-PinPlaceUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinPlaceUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PinPlaceUITests/Pods-PinPlaceUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -238,9 +242,10 @@
 			isa = PBXGroup;
 			children = (
 				AC80F9051D0735D3004CF58A /* PlacesMapViewController.swift */,
-				AC80F9131D082F98004CF58A /* PlacesTableViewController.swift */,
+				AC80F9131D082F98004CF58A /* PlacesPopoverTableViewController.swift */,
 				AC80F9151D084802004CF58A /* PlaceTableViewCell.swift */,
 				AC73860A1D100AE400B0AE24 /* PlaceDetailsViewController.swift */,
+				AC001EB91D192A44009B4176 /* PlacesTableViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -251,6 +256,7 @@
 				AC80F90D1D074343004CF58A /* PlacesMapViewModel.swift */,
 				AC40CB091D105B4400D01B9F /* PlaceDetailsViewModel.swift */,
 				AC40CB131D1423CF00D01B9F /* PlacesViewModel.swift */,
+				AC001EBB1D192A5D009B4176 /* PlacesTableViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -565,8 +571,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC80F9031D071B87004CF58A /* Place.swift in Sources */,
-				AC80F9141D082F98004CF58A /* PlacesTableViewController.swift in Sources */,
+				AC80F9141D082F98004CF58A /* PlacesPopoverTableViewController.swift in Sources */,
 				AC40CB0F1D1157A800D01B9F /* FoursquareVenue.swift in Sources */,
+				AC001EBC1D192A5D009B4176 /* PlacesTableViewModel.swift in Sources */,
 				AC80F9161D084802004CF58A /* PlaceTableViewCell.swift in Sources */,
 				AC40CB141D1423CF00D01B9F /* PlacesViewModel.swift in Sources */,
 				AC40CB121D13E79500D01B9F /* RouteDrawer.swift in Sources */,
@@ -580,6 +587,7 @@
 				AC80F8FE1D071A1D004CF58A /* PinPlace.xcdatamodeld in Sources */,
 				AC80F9041D071B87004CF58A /* _Place.swift in Sources */,
 				AC40CB0D1D11446C00D01B9F /* FoursquareWebService.swift in Sources */,
+				AC001EBA1D192A44009B4176 /* PlacesTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

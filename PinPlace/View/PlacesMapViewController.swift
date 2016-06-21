@@ -121,7 +121,7 @@ class PlacesMapViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueIdentifier.ShowPopover.rawValue {
-            guard let destVC = segue.destinationViewController as? PlacesTableViewController,
+            guard let destVC = segue.destinationViewController as? PlacesPopoverTableViewController,
                 let destPopoverVC = destVC.popoverPresentationController else {
                     return
             }
