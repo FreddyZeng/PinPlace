@@ -8,6 +8,7 @@
 
 import Foundation
 import JASON
+import Alamofire
 import RxAlamofire
 import RxSwift
 

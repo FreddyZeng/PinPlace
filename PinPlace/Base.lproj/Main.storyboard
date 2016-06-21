@@ -120,7 +120,7 @@
         <!--Places List-->
         <scene sceneID="0GH-Km-ofR">
             <objects>
-                <viewController id="7k3-AZ-cks" sceneMemberID="viewController">
+                <viewController id="7k3-AZ-cks" customClass="PlacesTableViewController" customModule="PinPlace" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DvA-dQ-aDD"/>
                         <viewControllerLayoutGuide type="bottom" id="RFM-Xv-Lxe"/>
@@ -133,19 +133,19 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="34" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nN2-wI-Q7h">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="34" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nN2-wI-Q7h">
                                 <rect key="frame" x="0.0" y="108" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlaceTableViewCellReuseIdentifier" textLabel="1l2-3q-a2q" style="IBUITableViewCellStyleDefault" id="rc4-Px-9rP" customClass="PlaceTableViewCell" customModule="PinPlace" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="34"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlaceCellIdentifier" textLabel="1l2-3q-a2q" rowHeight="44" style="IBUITableViewCellStyleDefault" id="rc4-Px-9rP" customClass="PlaceTableViewCell" customModule="PinPlace" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rc4-Px-9rP" id="yzo-Ff-lmC">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="33"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1l2-3q-a2q">
-                                                    <rect key="frame" x="15" y="0.0" width="550" height="33"/>
+                                                    <rect key="frame" x="15" y="0.0" width="550" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -169,6 +169,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Places List" id="qIW-Sg-r46"/>
+                    <connections>
+                        <outlet property="searchBar" destination="IQz-gP-3J9" id="6zJ-pw-Z3p"/>
+                        <outlet property="tableView" destination="nN2-wI-Q7h" id="UI0-Ac-Xw4"/>
+                        <segue destination="bhG-Fl-i9g" kind="show" identifier="ShowPlaceDetails" id="PbL-V9-I3o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="841-Jn-NCm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -260,4 +265,7 @@
             <point key="canvasLocation" x="1852" y="1112"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="PbL-V9-I3o"/>
+    </inferredMetricsTieBreakers>
 </document>

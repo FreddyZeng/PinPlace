@@ -14,6 +14,7 @@ class PlacesViewModel {
     private(set) var places = Variable<[Place]>([Place]())
 
     func fetchPlaces() {
+        places.value.removeAll()
         places.value.appendContentsOf(PlacesDataController.sharedInstance.fetchPlaces())
     }
 }

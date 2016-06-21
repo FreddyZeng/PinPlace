@@ -157,8 +157,9 @@ class PlacesMapViewController: UIViewController {
     }
     
     func placeDeletedNotification(notification: NSNotification) {
-        if let notificationObject = notification.object as? Place {
-            if notificationObject == self.viewModel.selectedTargetPlace! && appMode == .Routing {
+        if let notificationObject = notification.object as? Place,
+            let selectedTargetPlace =  self.viewModel.selectedTargetPlace {
+            if notificationObject == selectedTargetPlace && appMode == .Routing {
                 self.switchAppToNormalMode()
             }
         }
