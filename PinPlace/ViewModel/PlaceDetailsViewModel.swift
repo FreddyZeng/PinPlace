@@ -15,8 +15,8 @@ class PlaceDetailsViewModel {
     
     var place: Place?
     let nearbyVenues =  Variable<[FoursquareVenue]>([FoursquareVenue]())
-    let foursquareWebService = FoursquareWebService()
-    let disposeBag = DisposeBag()
+    private let foursquareWebService = FoursquareWebService()
+    private let disposeBag = DisposeBag()
     
     //MARK: - Methods
     

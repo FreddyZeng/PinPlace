@@ -17,9 +17,9 @@ class PlacesTableViewModel: PlacesViewModel {
     
     func findPlacesByName(searchQuery: String) {
         if searchQuery.characters.count > 0 {
-        self.places.value = self.places.value.filter() {place in
-            return place.title!.containsString(searchQuery)
-        }
+            self.places.value = self.places.value.filter { place in
+                return place.title!.containsString(searchQuery)
+            }
         } else {
             self.fetchPlaces()
         }

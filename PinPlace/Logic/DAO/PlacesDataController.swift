@@ -13,10 +13,10 @@ class PlacesDataController {
     
     // MARK: - Properties
     
-    let model: CoreDataModel!
+    private let model: CoreDataModel!
     var stack: CoreDataStack?
     
-    static var coreDataModelName: String {
+    private static var coreDataModelName: String {
         get {
             return "PinPlace"
         }

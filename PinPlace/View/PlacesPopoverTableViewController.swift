@@ -13,9 +13,9 @@ class PlacesPopoverTableViewController: UIViewController {
     
     // MARK: - Properties
     
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     let viewModel = PlacesViewModel()
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     // MARK: - UIViewController
     

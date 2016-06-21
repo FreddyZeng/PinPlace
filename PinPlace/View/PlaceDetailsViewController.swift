@@ -15,14 +15,14 @@ class PlaceDetailsViewController: UIViewController {
     
     // MARK: - Properties
     
-    @IBOutlet weak var centerOnMapButton: UIButton!
-    @IBOutlet weak var buildRouteButton: UIButton!
-    @IBOutlet weak var loadNearbyPlacesButton: UIButton!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var trashBarButtonItem: UIBarButtonItem!
+    @IBOutlet private weak var centerOnMapButton: UIButton!
+    @IBOutlet private weak var buildRouteButton: UIButton!
+    @IBOutlet private weak var loadNearbyPlacesButton: UIButton!
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var trashBarButtonItem: UIBarButtonItem!
     
     var viewModel: PlaceDetailsViewModel?
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     // MARK: - UIViewController
     

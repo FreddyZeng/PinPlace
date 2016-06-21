@@ -13,10 +13,6 @@ import RxSwift
 import RxCocoa
 import RxMKMapView
 
-/* TODO:
- -Searhcable list of bookmarks
- -Tableview placeholder
- */
 class PlacesMapViewController: UIViewController {
     
     private enum AppMode {
@@ -25,28 +21,18 @@ class PlacesMapViewController: UIViewController {
     
     // MARK: - Properties
     
-    @IBOutlet weak var routeBarButtonItem: UIBarButtonItem!
-    @IBOutlet weak var longPressGestureRecognizer: UILongPressGestureRecognizer!
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet private weak var routeBarButtonItem: UIBarButtonItem!
+    @IBOutlet private weak var longPressGestureRecognizer: UILongPressGestureRecognizer!
+    @IBOutlet private weak var mapView: MKMapView!
     
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     let viewModel = PlacesMapViewModel()
     let locationManager = CLLocationManager()
     private var appMode: AppMode = .Default
     
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self,
-                                                            name: NotificationName.CenterPlace.rawValue,
-                                                            object: nil)
-        
-        NSNotificationCenter.defaultCenter().removeObserver(self,
-                                                            name: NotificationName.BuildRoute.rawValue,
-                                                            object: nil)
-        
-        NSNotificationCenter.defaultCenter().removeObserver(self,
-                                                            name: NotificationName.PlaceDeleted.rawValue,
-                                                            object: nil)
+       removeNotifications()
     }
     
     // MARK: - UIViewController
@@ -54,21 +40,7 @@ class PlacesMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: #selector(centerPlaceNotification),
-                                                         name: NotificationName.CenterPlace.rawValue,
-                                                         object: nil)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: #selector(buildRoute),
-                                                         name: NotificationName.BuildRoute.rawValue,
-                                                         object: nil)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: #selector(placeDeletedNotification),
-                                                         name: NotificationName.PlaceDeleted.rawValue,
-                                                         object: nil)
-        
+        subscibeOnNotifications()
         setupMapForUpdatingUserLocation()
         
         longPressGestureRecognizer.rx_event.subscribeNext { [unowned self] longPressGesture in
@@ -144,8 +116,8 @@ class PlacesMapViewController: UIViewController {
         HUD.show(.Progress)
         viewModel.buildRoute() { errorMessage in
             HUD.flash(.Success, delay: 1.0)
-            if errorMessage != nil {
-                let alertController = UIAlertController(title: "Error", message: errorMessage!, preferredStyle: .Alert)
+            if let errorMessage = errorMessage {
+                let alertController = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .Alert)
                 let cancelAction = UIAlertAction(title: "OK", style: .Cancel) { (action) in
                 }
                 alertController.addAction(cancelAction)
@@ -195,6 +167,37 @@ class PlacesMapViewController: UIViewController {
         self.viewModel.routeDrawer.dismissCurrentRoute()
         viewModel.fetchPlaces()
         mapView.addAnnotations(viewModel.places.value)
+    }
+    
+    private func subscibeOnNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: #selector(centerPlaceNotification),
+                                                         name: NotificationName.CenterPlace.rawValue,
+                                                         object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: #selector(buildRoute),
+                                                         name: NotificationName.BuildRoute.rawValue,
+                                                         object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: #selector(placeDeletedNotification),
+                                                         name: NotificationName.PlaceDeleted.rawValue,
+                                                         object: nil)
+    }
+    
+    private func removeNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self,
+                                                            name: NotificationName.CenterPlace.rawValue,
+                                                            object: nil)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self,
+                                                            name: NotificationName.BuildRoute.rawValue,
+                                                            object: nil)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self,
+                                                            name: NotificationName.PlaceDeleted.rawValue,
+                                                            object: nil)
     }
 }
 
