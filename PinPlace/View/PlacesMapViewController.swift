@@ -27,7 +27,6 @@ class PlacesMapViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     let viewModel = PlacesMapViewModel()
-    let locationManager = CLLocationManager()
     private var appMode: AppMode = .Default
     
     
@@ -153,10 +152,7 @@ class PlacesMapViewController: UIViewController {
     // MARK: - Private
     
     private func setupMapForUpdatingUserLocation() {
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
+        self.viewModel.setupLocationManagerWithDelegate(self)
         mapView.showsUserLocation = true
         mapView.showsPointsOfInterest = true
     }

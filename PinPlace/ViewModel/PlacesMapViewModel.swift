@@ -14,7 +14,15 @@ class PlacesMapViewModel: PlacesViewModel {
     
     var selectedTargetPlace: Place?
     var routeDrawer = RouteDrawer()
-    
+    private let locationManager = CLLocationManager()
+
+    func setupLocationManagerWithDelegate(locationManagerDelegate: CLLocationManagerDelegate) {
+        locationManager.delegate = locationManagerDelegate
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+
     func appendPlaceWithCoordinate(coordinate: CLLocationCoordinate2D) {
         guard let newPlace = Place(coordinate: coordinate) else { return }
         places.value.append(newPlace)
