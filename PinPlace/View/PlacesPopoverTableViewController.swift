@@ -13,9 +13,9 @@ class PlacesPopoverTableViewController: UIViewController {
     
     // MARK: - Properties
     
-    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet fileprivate weak var tableView: UITableView!
     let viewModel = PlacesViewModel()
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     // MARK: - UIViewController
     
@@ -24,18 +24,20 @@ class PlacesPopoverTableViewController: UIViewController {
         
         viewModel.fetchPlaces()
         
-        viewModel.places.asObservable().bindTo(tableView.rx_itemsWithCellFactory) { tableView, row, place in
-            let cell = tableView.dequeueReusableCellWithIdentifier(PlaceTableViewCell.reuseIdentifier) as! PlaceTableViewCell
-            cell.placeTitleLabel.text = place.title
-            return cell
+        viewModel.places
+            .asObservable()
+            .bindTo(tableView.rx.items(cellIdentifier: PlaceTableViewCell.reuseIdentifier)) { row, place, cell in
+                guard let cell = cell as? PlaceTableViewCell else { return }
+                cell.placeTitleLabel.text = place.title
             }.addDisposableTo(disposeBag)
+
         
-        tableView.rx_itemSelected.subscribeNext() { [unowned self] indexPath in
+        tableView.rx.itemSelected.bindNext() { [unowned self] indexPath in
             if let placesMapVC = self.popoverPresentationController?.delegate as? PlacesMapViewController {
                 placesMapVC.viewModel.selectedTargetPlace = self.viewModel.places.value[indexPath.row]
-                NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.BuildRoute.rawValue, object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationName.BuildRoute.rawValue), object: nil)
             }
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
             }.addDisposableTo(disposeBag)
     }
 }

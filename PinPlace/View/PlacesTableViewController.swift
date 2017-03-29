@@ -14,11 +14,11 @@ class PlacesTableViewController: UIViewController {
     
     //MARK: - Properties
     
-    @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet fileprivate weak var tableView: UITableView!
+    @IBOutlet fileprivate weak var searchBar: UISearchBar!
     
     let viewModel = PlacesTableViewModel()
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     
     //MARK: - UIViewController
@@ -28,43 +28,37 @@ class PlacesTableViewController: UIViewController {
         
         viewModel.fetchPlaces()
         
-        viewModel.places.asObservable().bindTo(tableView.rx_itemsWithCellFactory) { tableView, row, place in
-            var cell = tableView.dequeueReusableCellWithIdentifier("PlaceCellIdentifier")
-            if cell == nil {
-                cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "PlaceCellIdentifier")
-            }
-            cell!.textLabel!.text = place.title
-            return cell!
+        viewModel.places
+            .asObservable()
+            .bindTo(tableView.rx.items(cellIdentifier: PlaceTableViewCell.reuseIdentifier)) { (row, place, cell) in
+               // cell!.textLabel!.text = place.title
             }.addDisposableTo(disposeBag)
         
-        tableView.rx_itemSelected.subscribeNext() { [unowned self] indexPath in
-            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            self.performSegueWithIdentifier(SegueIdentifier.ShowPlaceDetails.rawValue, sender: self.viewModel.places.value[indexPath.row])
+        tableView.rx.itemSelected.bindNext() { [unowned self] indexPath in
+            self.tableView.deselectRow(at: indexPath, animated: true)
+            self.performSegue(withIdentifier: SegueIdentifier.ShowPlaceDetails.rawValue,
+                              sender: self.viewModel.places.value[indexPath.row])
             }.addDisposableTo(disposeBag)
         
-        tableView.rx_itemDeleted
-            .map { [unowned self] indexPath in
-                try self.tableView.rx_modelAtIndexPath(indexPath) as Place
-            }
-            .subscribeNext { [unowned self] place in
-                NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.PlaceDeleted.rawValue, object: place)
-                self.viewModel.deletePlace(place)
+        tableView.rx.itemDeleted.bindNext() { [unowned self] indexPath in
+//                try self.tableView.rx.model(at: indexPath) as Place
+//                NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.PlaceDeleted.rawValue, object: place)
+//                self.viewModel.deletePlace(place)
             }.addDisposableTo(disposeBag)
-        
+//
         searchBar
-            .rx_text
+            .rx.text
             .throttle(0.5, scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
-            .subscribeNext { [unowned self] (query) in
-                self.viewModel.findPlacesByName(query)
+            .bindNext { [unowned self] (query) in
+                self.viewModel.findPlacesByName(query!)
             }
             .addDisposableTo(disposeBag)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueIdentifier.ShowPlaceDetails.rawValue {
             guard let place = sender as? Place,
-                let destinationViewController = segue.destinationViewController as? PlaceDetailsViewController
+                let destinationViewController = segue.destination as? PlaceDetailsViewController
                 else { return }
             destinationViewController.viewModel = PlaceDetailsViewModel()
             destinationViewController.viewModel?.place = place

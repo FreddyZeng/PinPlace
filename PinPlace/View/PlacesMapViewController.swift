@@ -15,19 +15,19 @@ import RxMKMapView
 
 class PlacesMapViewController: UIViewController {
     
-    private enum AppMode {
-        case Default, Routing
+    fileprivate enum AppMode {
+        case `default`, routing
     }
     
     // MARK: - Properties
     
-    @IBOutlet private weak var routeBarButtonItem: UIBarButtonItem!
-    @IBOutlet private weak var longPressGestureRecognizer: UILongPressGestureRecognizer!
-    @IBOutlet private weak var mapView: MKMapView!
+    @IBOutlet fileprivate weak var routeBarButtonItem: UIBarButtonItem!
+    @IBOutlet fileprivate weak var longPressGestureRecognizer: UILongPressGestureRecognizer!
+    @IBOutlet fileprivate weak var mapView: MKMapView!
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     let viewModel = PlacesMapViewModel()
-    private var appMode: AppMode = .Default
+    fileprivate var appMode: AppMode = .default
     
     
     deinit {
@@ -42,25 +42,25 @@ class PlacesMapViewController: UIViewController {
         subscibeOnNotifications()
         setupMapForUpdatingUserLocation()
         
-        longPressGestureRecognizer.rx_event.subscribeNext { [unowned self] longPressGesture in
-            if longPressGesture.state != .Ended {
+        longPressGestureRecognizer.rx.event.bindNext { [unowned self] longPressGesture in
+            if longPressGesture.state != .ended {
                 return
             }
-            let touchPoint = longPressGesture.locationInView(self.mapView)
-            let touchLocationCoordinate2D = self.mapView.convertPoint(touchPoint, toCoordinateFromView: self.mapView)
+            let touchPoint = longPressGesture.location(in: self.mapView)
+            let touchLocationCoordinate2D = self.mapView.convert(touchPoint, toCoordinateFrom: self.mapView)
             self.viewModel.appendPlaceWithCoordinate(touchLocationCoordinate2D)
             self.mapView.addAnnotation(self.viewModel.places.value.last!)
             
             }.addDisposableTo(disposeBag)
         
-        mapView.rx_annotationViewCalloutAccessoryControlTapped.subscribeNext { [unowned self] view, control in
+        mapView.rx.annotationViewCalloutAccessoryControlTapped.bindNext { [unowned self] view, control in
             if view.annotation is Place {
                 self.mapView.deselectAnnotation(view.annotation, animated: false)
-                self.performSegueWithIdentifier(SegueIdentifier.ShowPlaceDetails.rawValue, sender: view.annotation)
+                self.performSegue(withIdentifier: SegueIdentifier.ShowPlaceDetails.rawValue, sender: view.annotation)
             }
             }.addDisposableTo(disposeBag)
         
-        mapView.rx_didUpdateUserLocation.subscribeNext { [unowned self] _ in
+        mapView.rx.didUpdateUserLocation.bindNext { [unowned self] _ in
             guard let userLocation = self.mapView.userLocation.location else { return }
             let coordinateSpan = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
             let locationCoordinate = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude,
@@ -70,36 +70,36 @@ class PlacesMapViewController: UIViewController {
             self.mapView.setRegion(region, animated: true)
         }.addDisposableTo(disposeBag)
         
-        routeBarButtonItem.rx_tap.subscribeNext { [unowned self] in
+        routeBarButtonItem.rx.tap.bindNext { [unowned self] in
             switch self.appMode {
-            case .Default:
-                self.performSegueWithIdentifier(SegueIdentifier.ShowPopover.rawValue, sender: self)
-            case .Routing:
+            case .default:
+                self.performSegue(withIdentifier: SegueIdentifier.ShowPopover.rawValue, sender: self)
+            case .routing:
                 self.switchAppToNormalMode()
             }
         }.addDisposableTo(disposeBag)
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if appMode == .Default {
+        if appMode == .default {
             viewModel.fetchPlaces()
             mapView.addAnnotations(viewModel.places.value)
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueIdentifier.ShowPopover.rawValue {
-            guard let destVC = segue.destinationViewController as? PlacesPopoverTableViewController,
+            guard let destVC = segue.destination as? PlacesPopoverTableViewController,
                 let destPopoverVC = destVC.popoverPresentationController else {
                     return
             }
             destPopoverVC.delegate = self
         } else if segue.identifier == SegueIdentifier.ShowPlaceDetails.rawValue {
             guard let place = sender as? Place,
-                let destinationViewController = segue.destinationViewController as? PlaceDetailsViewController
+                let destinationViewController = segue.destination as? PlaceDetailsViewController
                 else { return }
             destinationViewController.viewModel = PlaceDetailsViewModel()
             destinationViewController.viewModel?.place = place
@@ -109,36 +109,36 @@ class PlacesMapViewController: UIViewController {
     // MARK: - NSNotificationCenter Handlers
     
     func buildRoute() {
-        appMode = .Routing
+        appMode = .routing
         routeBarButtonItem.title = "Clear Route"
         viewModel.routeDrawer.mapView = self.mapView
-        HUD.show(.Progress)
+        HUD.show(.progress)
         viewModel.buildRoute() { errorMessage in
-            HUD.flash(.Success, delay: 1.0)
+            HUD.flash(.success, delay: 1.0)
             if let errorMessage = errorMessage {
-                let alertController = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .Alert)
-                let cancelAction = UIAlertAction(title: "OK", style: .Cancel) { (action) in
+                let alertController = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
                 }
                 alertController.addAction(cancelAction)
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.presentViewController(alertController, animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    self.present(alertController, animated: true, completion: nil)
                 }
             }
         }
     }
     
-    func placeDeletedNotification(notification: NSNotification) {
+    func placeDeletedNotification(_ notification: Notification) {
         if let notificationObject = notification.object as? Place,
             let selectedTargetPlace =  self.viewModel.selectedTargetPlace {
-            if notificationObject == selectedTargetPlace && appMode == .Routing {
+            if notificationObject == selectedTargetPlace && appMode == .routing {
                 self.switchAppToNormalMode()
             }
         }
     }
     
-    func centerPlaceNotification(notification: NSNotification) {
+    func centerPlaceNotification(_ notification: Notification) {
         if let notificationObject = notification.object as? Place {
-            if self.appMode != .Default {
+            if self.appMode != .default {
                 switchAppToNormalMode()
             }
             guard let location = notificationObject.location as? CLLocation else {return}
@@ -151,48 +151,48 @@ class PlacesMapViewController: UIViewController {
     
     // MARK: - Private
     
-    private func setupMapForUpdatingUserLocation() {
+    fileprivate func setupMapForUpdatingUserLocation() {
         self.viewModel.setupLocationManagerWithDelegate(self)
         mapView.showsUserLocation = true
         mapView.showsPointsOfInterest = true
     }
     
-    private func switchAppToNormalMode() {
-        self.appMode = .Default
+    fileprivate func switchAppToNormalMode() {
+        self.appMode = .default
         self.routeBarButtonItem.title = "Route"
         self.viewModel.routeDrawer.dismissCurrentRoute()
         viewModel.fetchPlaces()
         mapView.addAnnotations(viewModel.places.value)
     }
     
-    private func subscibeOnNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self,
+    fileprivate func subscibeOnNotifications() {
+        NotificationCenter.default.addObserver(self,
                                                          selector: #selector(centerPlaceNotification),
-                                                         name: NotificationName.CenterPlace.rawValue,
+                                                         name: NSNotification.Name(rawValue: NotificationName.CenterPlace.rawValue),
                                                          object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
                                                          selector: #selector(buildRoute),
-                                                         name: NotificationName.BuildRoute.rawValue,
+                                                         name: NSNotification.Name(rawValue: NotificationName.BuildRoute.rawValue),
                                                          object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
                                                          selector: #selector(placeDeletedNotification),
-                                                         name: NotificationName.PlaceDeleted.rawValue,
+                                                         name: NSNotification.Name(rawValue: NotificationName.PlaceDeleted.rawValue),
                                                          object: nil)
     }
     
-    private func removeNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(self,
-                                                            name: NotificationName.CenterPlace.rawValue,
+    fileprivate func removeNotifications() {
+        NotificationCenter.default.removeObserver(self,
+                                                            name: NSNotification.Name(rawValue: NotificationName.CenterPlace.rawValue),
                                                             object: nil)
         
-        NSNotificationCenter.defaultCenter().removeObserver(self,
-                                                            name: NotificationName.BuildRoute.rawValue,
+        NotificationCenter.default.removeObserver(self,
+                                                            name: NSNotification.Name(rawValue: NotificationName.BuildRoute.rawValue),
                                                             object: nil)
         
-        NSNotificationCenter.defaultCenter().removeObserver(self,
-                                                            name: NotificationName.PlaceDeleted.rawValue,
+        NotificationCenter.default.removeObserver(self,
+                                                            name: NSNotification.Name(rawValue: NotificationName.PlaceDeleted.rawValue),
                                                             object: nil)
     }
 }
@@ -206,17 +206,17 @@ extension PlacesMapViewController: CLLocationManagerDelegate {
 // MARK: - MKMapViewDelegate
 
 extension PlacesMapViewController: MKMapViewDelegate {
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
-            return mapView.viewForAnnotation(annotation)
+            return mapView.view(for: annotation)
         }
         let placeAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "PlaceAnnotationViewIdentifier")
         placeAnnotationView.canShowCallout = true
-        placeAnnotationView.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+        placeAnnotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         return placeAnnotationView
     }
     
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let polylineRenderer = MKPolylineRenderer(overlay: overlay)
         polylineRenderer.strokeColor = UIColor(red:0.29, green:0.53, blue:0.91, alpha:1.0)
         polylineRenderer.lineWidth = 5.0
@@ -227,8 +227,8 @@ extension PlacesMapViewController: MKMapViewDelegate {
 // MARK: - UIPopoverPresentationControllerDelegate
 
 extension PlacesMapViewController: UIPopoverPresentationControllerDelegate {
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-        return .None
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
     }
 }
 

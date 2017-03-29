@@ -13,10 +13,10 @@ class PlacesDataController {
     
     // MARK: - Properties
     
-    private let model: CoreDataModel!
+    fileprivate let model: CoreDataModel!
     var stack: CoreDataStack?
     
-    private static var coreDataModelName: String {
+    fileprivate static var coreDataModelName: String {
         get {
             return "PinPlace"
         }
@@ -28,9 +28,9 @@ class PlacesDataController {
     
     // MARK: - Initializer
     
-    private init() {
+    fileprivate init() {
         self.model = CoreDataModel(name: PlacesDataController.coreDataModelName,
-                                   bundle: NSBundle.mainBundle())
+                                   bundle: Bundle.main)
         
         let factory = CoreDataStackFactory(model: model)
         factory.createStack(onQueue: nil) { [unowned self](result: StackResult) in
@@ -61,10 +61,11 @@ class PlacesDataController {
             return result
         }
         
-        let request = FetchRequest<Place>(entity: placeEntity)
+        //let request = FetchRequest<Place>(entity: placeEntity)
+        let request = Place.fetchRequest()
         
         do {
-            result = try stack.mainContext.fetch(request: request)
+            result = try stack.mainContext.fetch(request) as! Array<Place>
         } catch {
             print("Fetch error: \(error)")
         }
@@ -72,11 +73,11 @@ class PlacesDataController {
         return result
     }
     
-    func deletePlace(place: Place) {
+    func deletePlace(_ place: Place) {
         guard let stack = self.stack else {
             return
         }
-        stack.mainContext.deleteObject(place)
+        stack.mainContext.delete(place)
         do {
             try stack.mainContext.save()
         } catch {

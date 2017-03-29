@@ -15,14 +15,14 @@ class PlaceDetailsViewModel {
     
     var place: Place?
     let nearbyVenues =  Variable<[FoursquareVenue]>([FoursquareVenue]())
-    private let foursquareWebService = FoursquareWebService()
-    private let disposeBag = DisposeBag()
+    fileprivate let foursquareWebService = FoursquareWebService()
+    fileprivate let disposeBag = DisposeBag()
     
     //MARK: - Methods
     
-    func fetchNearbyPlaces(completion: (() -> Void)?) {
+    func fetchNearbyPlaces(_ completion: (() -> Void)?) {
         if let place = place {
-            foursquareWebService.fetchNearbyFoursqareVenues(forPlace: place).subscribeNext {[unowned self] venuesArray  in
+            foursquareWebService.fetchNearbyFoursqareVenues(forPlace: place).bindNext {[unowned self] venuesArray  in
                 completion?()
                 self.nearbyVenues.value = venuesArray
                 }.addDisposableTo(disposeBag)

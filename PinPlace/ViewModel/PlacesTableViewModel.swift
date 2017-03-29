@@ -10,15 +10,15 @@ import Foundation
 
 class PlacesTableViewModel: PlacesViewModel {
     
-    func deletePlace(place: Place) {
+    func deletePlace(_ place: Place) {
         PlacesDataController.sharedInstance.deletePlace(place)
-        self.places.value.removeAtIndex(self.places.value.indexOf(place)!)
+        self.places.value.remove(at: self.places.value.index(of: place)!)
     }
     
-    func findPlacesByName(searchQuery: String) {
+    func findPlacesByName(_ searchQuery: String) {
         if searchQuery.characters.count > 0 {
             self.places.value = self.places.value.filter { place in
-                return place.title!.containsString(searchQuery)
+                return place.title!.contains(searchQuery)
             }
         } else {
             self.fetchPlaces()

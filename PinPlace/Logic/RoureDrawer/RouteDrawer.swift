@@ -9,11 +9,11 @@
 import Foundation
 import MapKit
 
-enum RouteDrawerError: ErrorType {
-    case TargetPlaceIsNotProvided
-    case DestinationCoordiateMissed
-    case UserLocationIsDisabled
-    case RouteCalculationFailed
+enum RouteDrawerError: Error {
+    case targetPlaceIsNotProvided
+    case destinationCoordiateMissed
+    case userLocationIsDisabled
+    case routeCalculationFailed
 }
 
 class RouteDrawer {
@@ -21,11 +21,11 @@ class RouteDrawer {
     var targetPlace: Place?
     var mapView: MKMapView?
     
-    private var currentRouteDirections: MKDirections?
+    fileprivate var currentRouteDirections: MKDirections?
     
     // MARK: - Public
     
-    func showRouteToTargetPlace(completion: ((NSError?) -> Void)) throws {
+    func showRouteToTargetPlace(_ completion: @escaping ((NSError?) -> Void)) throws {
         do {
             try fetchDirectionsToTargetPlace() { error in
                 completion(error)
@@ -35,7 +35,7 @@ class RouteDrawer {
     
     func dismissCurrentRoute() {
         if let directions = currentRouteDirections {
-            if directions.calculating {
+            if directions.isCalculating {
                 directions.cancel()
             }
         }
@@ -46,37 +46,37 @@ class RouteDrawer {
     
     // MARK: - Private
     
-    private func fetchDirectionsToTargetPlace(completion: ((NSError?) -> Void)) throws {
+    fileprivate func fetchDirectionsToTargetPlace(_ completion: @escaping ((NSError?) -> Void)) throws {
         guard let place = targetPlace else {
-            throw RouteDrawerError.TargetPlaceIsNotProvided
+            throw RouteDrawerError.targetPlaceIsNotProvided
         }
         
         guard let destinationCoordinate = place.location?.coordinate else {
-            throw RouteDrawerError.DestinationCoordiateMissed
+            throw RouteDrawerError.destinationCoordiateMissed
         }
         
         guard mapView!.userLocation.location != nil else {
-            throw RouteDrawerError.UserLocationIsDisabled
+            throw RouteDrawerError.userLocationIsDisabled
         }
         
         dismissCurrentRoute()
         mapView!.addAnnotation(place)
         
         let directionsRequest = MKDirectionsRequest()
-        directionsRequest.source = MKMapItem.mapItemForCurrentLocation()
+        directionsRequest.source = MKMapItem.forCurrentLocation()
         directionsRequest.requestsAlternateRoutes = false
         
         let destinationPlaceMark = MKPlacemark(coordinate: destinationCoordinate, addressDictionary: nil)
         
         directionsRequest.destination = MKMapItem(placemark: destinationPlaceMark)
-        directionsRequest.transportType = .Any
+        directionsRequest.transportType = .any
         
         currentRouteDirections = MKDirections(request: directionsRequest)
         
-        currentRouteDirections?.calculateDirectionsWithCompletionHandler() { directionsResponse, error in
-            dispatch_async(dispatch_get_main_queue()) {
+        currentRouteDirections?.calculate() { directionsResponse, error in
+            DispatchQueue.main.async {
                 if error != nil && directionsResponse == nil {
-                    completion(error)
+                    completion(error as NSError?)
                 } else {
                     if let directions = directionsResponse {
                         self.drawRoute(directions)
@@ -87,10 +87,10 @@ class RouteDrawer {
         }
     }
     
-    private func drawRoute(mkDirectionsResponse: MKDirectionsResponse) {
+    fileprivate func drawRoute(_ mkDirectionsResponse: MKDirectionsResponse) {
         var totalRect = MKMapRectNull
         for route in mkDirectionsResponse.routes {
-            mapView!.addOverlay(route.polyline, level: .AboveRoads)
+            mapView!.add(route.polyline, level: .aboveRoads)
             let polygon = MKPolygon(points: route.polyline.points(), count: route.polyline.pointCount)
             let routeRect = polygon.boundingMapRect
             totalRect = MKMapRectUnion(totalRect, routeRect)

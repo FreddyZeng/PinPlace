@@ -14,34 +14,34 @@ class PlacesMapViewModel: PlacesViewModel {
     
     var selectedTargetPlace: Place?
     var routeDrawer = RouteDrawer()
-    private let locationManager = CLLocationManager()
+    fileprivate let locationManager = CLLocationManager()
 
-    func setupLocationManagerWithDelegate(locationManagerDelegate: CLLocationManagerDelegate) {
+    func setupLocationManagerWithDelegate(_ locationManagerDelegate: CLLocationManagerDelegate) {
         locationManager.delegate = locationManagerDelegate
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
     }
 
-    func appendPlaceWithCoordinate(coordinate: CLLocationCoordinate2D) {
+    func appendPlaceWithCoordinate(_ coordinate: CLLocationCoordinate2D) {
         guard let newPlace = Place(coordinate: coordinate) else { return }
         places.value.append(newPlace)
         PlacesDataController.sharedInstance.saveChanges()
     }
     
-    func buildRoute(completion: ((String?) -> Void)) {
+    func buildRoute(_ completion: @escaping ((String?) -> Void)) {
         routeDrawer.targetPlace = selectedTargetPlace
         do {
             try routeDrawer.showRouteToTargetPlace() { error in
                 completion(error?.localizedDescription)
             }
-        } catch RouteDrawerError.DestinationCoordiateMissed {
+        } catch RouteDrawerError.destinationCoordiateMissed {
             completion("Destination coordiate missed.")
-        } catch RouteDrawerError.RouteCalculationFailed {
+        } catch RouteDrawerError.routeCalculationFailed {
             completion("Route calculation failed.")
-        } catch RouteDrawerError.TargetPlaceIsNotProvided {
+        } catch RouteDrawerError.targetPlaceIsNotProvided {
             completion("Target place isn't provided.")
-        } catch RouteDrawerError.UserLocationIsDisabled {
+        } catch RouteDrawerError.userLocationIsDisabled {
             completion("User location is disabled")
         } catch {
             completion("Unknown error.")

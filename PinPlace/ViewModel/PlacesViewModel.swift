@@ -11,10 +11,10 @@ import RxSwift
 
 class PlacesViewModel {
 
-    private(set) var places = Variable<[Place]>([Place]())
+    fileprivate(set) var places = Variable<[Place]>([Place]())
 
     func fetchPlaces() {
         places.value.removeAll()
-        places.value.appendContentsOf(PlacesDataController.sharedInstance.fetchPlaces())
+        places.value.append(contentsOf: PlacesDataController.sharedInstance.fetchPlaces())
     }
 }
