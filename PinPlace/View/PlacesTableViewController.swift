@@ -11,41 +11,43 @@ import RxSwift
 import RxCocoa
 
 class PlacesTableViewController: UIViewController {
-    
+
     //MARK: - Properties
-    
+
     @IBOutlet fileprivate weak var tableView: UITableView!
     @IBOutlet fileprivate weak var searchBar: UISearchBar!
-    
+
     let viewModel = PlacesTableViewModel()
     fileprivate let disposeBag = DisposeBag()
-    
-    
+
+
     //MARK: - UIViewController
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        viewModel.fetchPlaces()
-        
+
+        tableView.register(PlaceTableViewCell.self, forCellReuseIdentifier: "FoursquareVenueCellIdentifier")
+
         viewModel.places
             .asObservable()
-            .bindTo(tableView.rx.items(cellIdentifier: PlaceTableViewCell.reuseIdentifier)) { (row, place, cell) in
-               // cell!.textLabel!.text = place.title
+            .bindTo(tableView.rx.items(cellIdentifier: "FoursquareVenueCellIdentifier",
+                                       cellType: PlaceTableViewCell.self)) { (row, place, cell) in
+                                        cell.placeTitleLabel.text = place.title
             }.addDisposableTo(disposeBag)
-        
+
         tableView.rx.itemSelected.bindNext() { [unowned self] indexPath in
             self.tableView.deselectRow(at: indexPath, animated: true)
             self.performSegue(withIdentifier: SegueIdentifier.ShowPlaceDetails.rawValue,
                               sender: self.viewModel.places.value[indexPath.row])
             }.addDisposableTo(disposeBag)
-        
+
         tableView.rx.itemDeleted.bindNext() { [unowned self] indexPath in
-//                try self.tableView.rx.model(at: indexPath) as Place
-//                NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.PlaceDeleted.rawValue, object: place)
-//                self.viewModel.deletePlace(place)
+            if let place = try? self.tableView.rx.model(at: indexPath) as Place {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationName.PlaceDeleted.rawValue), object: place)
+                self.viewModel.deletePlace(place)
+            }
             }.addDisposableTo(disposeBag)
-//
+
         searchBar
             .rx.text
             .throttle(0.5, scheduler: MainScheduler.instance)
@@ -53,8 +55,10 @@ class PlacesTableViewController: UIViewController {
                 self.viewModel.findPlacesByName(query!)
             }
             .addDisposableTo(disposeBag)
+
+        viewModel.fetchPlaces()
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueIdentifier.ShowPlaceDetails.rawValue {
             guard let place = sender as? Place,

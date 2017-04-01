@@ -17,4 +17,11 @@ class PlaceTableViewCell: UITableViewCell {
             return "PlaceTableViewCellReuseIdentifier"
         }
     }
+
+    class var nib: UINib {
+        get {
+            return UINib(nibName: "PlaceTableViewCell", bundle: nil)
+        }
+    }
+    
 }

@@ -33,6 +33,7 @@
 		AC80F9141D082F98004CF58A /* PlacesPopoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F9131D082F98004CF58A /* PlacesPopoverTableViewController.swift */; };
 		AC80F9161D084802004CF58A /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F9151D084802004CF58A /* PlaceTableViewCell.swift */; };
 		AC80F9191D084884004CF58A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F9181D084884004CF58A /* Constants.swift */; };
+		C86A8D5A1E8F18F20057CD05 /* PlaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C86A8D591E8F18F20057CD05 /* PlaceTableViewCell.xib */; };
 		DDC6E90654B17E7E86BA5332 /* Pods_PinPlace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC661CFEA15F8B4949437EA /* Pods_PinPlace.framework */; };
 		DEF1208402B6B83085F8B266 /* Pods_PinPlaceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDB33BA77A6FAE533E81AD46 /* Pods_PinPlaceTests.framework */; };
 		FAB87580E64121ACCC8F0110 /* Pods_PinPlaceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A3EF14DEFF0944586BB2480 /* Pods_PinPlaceUITests.framework */; };
@@ -95,6 +96,7 @@
 		AC80F9181D084884004CF58A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C06226618C0DEDFDAE85A811 /* Pods-PinPlaceUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinPlaceUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PinPlaceUITests/Pods-PinPlaceUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C5FF54FC18F352523C071B7B /* Pods-PinPlace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinPlace.release.xcconfig"; path = "Pods/Target Support Files/Pods-PinPlace/Pods-PinPlace.release.xcconfig"; sourceTree = "<group>"; };
+		C86A8D591E8F18F20057CD05 /* PlaceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceTableViewCell.xib; sourceTree = "<group>"; };
 		EDC661CFEA15F8B4949437EA /* Pods_PinPlace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinPlace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDB33BA77A6FAE533E81AD46 /* Pods_PinPlaceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinPlaceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -246,6 +248,7 @@
 				AC80F9151D084802004CF58A /* PlaceTableViewCell.swift */,
 				AC73860A1D100AE400B0AE24 /* PlaceDetailsViewController.swift */,
 				AC001EB91D192A44009B4176 /* PlacesTableViewController.swift */,
+				C86A8D591E8F18F20057CD05 /* PlaceTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				AC80F8D51D070FAD004CF58A /* LaunchScreen.storyboard in Resources */,
 				AC80F8D21D070FAD004CF58A /* Assets.xcassets in Resources */,
 				AC80F8D01D070FAD004CF58A /* Main.storyboard in Resources */,
+				C86A8D5A1E8F18F20057CD05 /* PlaceTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
