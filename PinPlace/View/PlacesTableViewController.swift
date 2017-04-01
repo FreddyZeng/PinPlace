@@ -26,11 +26,12 @@ class PlacesTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(PlaceTableViewCell.self, forCellReuseIdentifier: "FoursquareVenueCellIdentifier")
+        tableView.register(PlaceTableViewCell.nib,
+                           forCellReuseIdentifier: PlaceTableViewCell.reuseIdentifier)
 
         viewModel.places
             .asObservable()
-            .bindTo(tableView.rx.items(cellIdentifier: "FoursquareVenueCellIdentifier",
+            .bindTo(tableView.rx.items(cellIdentifier: PlaceTableViewCell.reuseIdentifier,
                                        cellType: PlaceTableViewCell.self)) { (row, place, cell) in
                                         cell.placeTitleLabel.text = place.title
             }.addDisposableTo(disposeBag)
