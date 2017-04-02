@@ -57,6 +57,10 @@ class PlacesTableViewController: UIViewController {
             }
             .addDisposableTo(disposeBag)
 
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         viewModel.fetchPlaces()
     }
 
