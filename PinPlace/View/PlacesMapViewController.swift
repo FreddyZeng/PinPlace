@@ -108,7 +108,7 @@ class PlacesMapViewController: UIViewController {
     
     // MARK: - NSNotificationCenter Handlers
     
-    func buildRoute() {
+    @objc private func buildRoute() {
         appMode = .routing
         routeBarButtonItem.title = "Clear Route"
         viewModel.routeDrawer.mapView = self.mapView
@@ -127,7 +127,7 @@ class PlacesMapViewController: UIViewController {
         }
     }
     
-    func placeDeletedNotification(_ notification: Notification) {
+    @objc private func placeDeletedNotification(_ notification: Notification) {
         if let notificationObject = notification.object as? Place,
             let selectedTargetPlace =  self.viewModel.selectedTargetPlace {
             if notificationObject == selectedTargetPlace && appMode == .routing {
@@ -136,7 +136,7 @@ class PlacesMapViewController: UIViewController {
         }
     }
     
-    func centerPlaceNotification(_ notification: Notification) {
+    @objc private func centerPlaceNotification(_ notification: Notification) {
         if let notificationObject = notification.object as? Place {
             if self.appMode != .default {
                 switchAppToNormalMode()
@@ -167,33 +167,33 @@ class PlacesMapViewController: UIViewController {
     
     fileprivate func subscibeOnNotifications() {
         NotificationCenter.default.addObserver(self,
-                                                         selector: #selector(centerPlaceNotification),
-                                                         name: NSNotification.Name(rawValue: NotificationName.CenterPlace.rawValue),
-                                                         object: nil)
-        
+                                               selector: #selector(centerPlaceNotification),
+                                               name: .centerPlaceOnMap,
+                                               object: nil)
+
         NotificationCenter.default.addObserver(self,
-                                                         selector: #selector(buildRoute),
-                                                         name: NSNotification.Name(rawValue: NotificationName.BuildRoute.rawValue),
-                                                         object: nil)
-        
+                                               selector: #selector(buildRoute),
+                                               name: .buildRoute,
+                                               object: nil)
+
         NotificationCenter.default.addObserver(self,
-                                                         selector: #selector(placeDeletedNotification),
-                                                         name: NSNotification.Name(rawValue: NotificationName.PlaceDeleted.rawValue),
-                                                         object: nil)
+                                               selector: #selector(placeDeletedNotification),
+                                               name: .placeDeleted,
+                                               object: nil)
     }
-    
+
     fileprivate func removeNotifications() {
         NotificationCenter.default.removeObserver(self,
-                                                            name: NSNotification.Name(rawValue: NotificationName.CenterPlace.rawValue),
-                                                            object: nil)
-        
+                                                  name: .centerPlaceOnMap,
+                                                  object: nil)
+
         NotificationCenter.default.removeObserver(self,
-                                                            name: NSNotification.Name(rawValue: NotificationName.BuildRoute.rawValue),
-                                                            object: nil)
-        
+                                                  name: .buildRoute,
+                                                  object: nil)
+
         NotificationCenter.default.removeObserver(self,
-                                                            name: NSNotification.Name(rawValue: NotificationName.PlaceDeleted.rawValue),
-                                                            object: nil)
+                                                  name: .placeDeleted,
+                                                  object: nil)
     }
 }
 

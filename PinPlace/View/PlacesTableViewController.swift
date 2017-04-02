@@ -44,7 +44,7 @@ class PlacesTableViewController: UIViewController {
 
         tableView.rx.itemDeleted.bindNext() { [unowned self] indexPath in
             if let place = try? self.tableView.rx.model(at: indexPath) as Place {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationName.PlaceDeleted.rawValue), object: place)
+                NotificationCenter.default.post(name: .placeDeleted, object: place)
                 self.viewModel.deletePlace(place)
             }
             }.addDisposableTo(disposeBag)

@@ -35,7 +35,7 @@ class PlacesPopoverTableViewController: UIViewController {
         tableView.rx.itemSelected.bindNext() { [unowned self] indexPath in
             if let placesMapVC = self.popoverPresentationController?.delegate as? PlacesMapViewController {
                 placesMapVC.viewModel.selectedTargetPlace = self.viewModel.places.value[indexPath.row]
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationName.BuildRoute.rawValue), object: nil)
+                NotificationCenter.default.post(name: .buildRoute, object: nil)
             }
             self.dismiss(animated: true, completion: nil)
             }.addDisposableTo(disposeBag)

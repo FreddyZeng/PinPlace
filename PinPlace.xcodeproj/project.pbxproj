@@ -31,9 +31,10 @@
 		AC80F90E1D074343004CF58A /* PlacesMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F90D1D074343004CF58A /* PlacesMapViewModel.swift */; };
 		AC80F9121D08103C004CF58A /* PlacesDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F9111D08103C004CF58A /* PlacesDataController.swift */; };
 		AC80F9141D082F98004CF58A /* PlacesPopoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F9131D082F98004CF58A /* PlacesPopoverTableViewController.swift */; };
-		AC80F9161D084802004CF58A /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F9151D084802004CF58A /* PlaceTableViewCell.swift */; };
 		AC80F9191D084884004CF58A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F9181D084884004CF58A /* Constants.swift */; };
-		C86A8D5A1E8F18F20057CD05 /* PlaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C86A8D591E8F18F20057CD05 /* PlaceTableViewCell.xib */; };
+		C8752A9B1E910083001DABB2 /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8752A991E910083001DABB2 /* PlaceTableViewCell.swift */; };
+		C8752A9C1E910083001DABB2 /* PlaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8752A9A1E910083001DABB2 /* PlaceTableViewCell.xib */; };
+		C8752A9F1E9101A6001DABB2 /* NotificationCenter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8752A9E1E9101A6001DABB2 /* NotificationCenter+Extensions.swift */; };
 		DDC6E90654B17E7E86BA5332 /* Pods_PinPlace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC661CFEA15F8B4949437EA /* Pods_PinPlace.framework */; };
 		DEF1208402B6B83085F8B266 /* Pods_PinPlaceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDB33BA77A6FAE533E81AD46 /* Pods_PinPlaceTests.framework */; };
 		FAB87580E64121ACCC8F0110 /* Pods_PinPlaceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A3EF14DEFF0944586BB2480 /* Pods_PinPlaceUITests.framework */; };
@@ -92,11 +93,12 @@
 		AC80F90D1D074343004CF58A /* PlacesMapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesMapViewModel.swift; sourceTree = "<group>"; };
 		AC80F9111D08103C004CF58A /* PlacesDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesDataController.swift; sourceTree = "<group>"; };
 		AC80F9131D082F98004CF58A /* PlacesPopoverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesPopoverTableViewController.swift; sourceTree = "<group>"; };
-		AC80F9151D084802004CF58A /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
 		AC80F9181D084884004CF58A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C06226618C0DEDFDAE85A811 /* Pods-PinPlaceUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinPlaceUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PinPlaceUITests/Pods-PinPlaceUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C5FF54FC18F352523C071B7B /* Pods-PinPlace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinPlace.release.xcconfig"; path = "Pods/Target Support Files/Pods-PinPlace/Pods-PinPlace.release.xcconfig"; sourceTree = "<group>"; };
-		C86A8D591E8F18F20057CD05 /* PlaceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceTableViewCell.xib; sourceTree = "<group>"; };
+		C8752A991E910083001DABB2 /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
+		C8752A9A1E910083001DABB2 /* PlaceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceTableViewCell.xib; sourceTree = "<group>"; };
+		C8752A9E1E9101A6001DABB2 /* NotificationCenter+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+Extensions.swift"; sourceTree = "<group>"; };
 		EDC661CFEA15F8B4949437EA /* Pods_PinPlace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinPlace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDB33BA77A6FAE533E81AD46 /* Pods_PinPlaceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinPlaceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -243,12 +245,11 @@
 		AC80F8FA1D0717E1004CF58A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C8752A971E910083001DABB2 /* Cells */,
 				AC80F9051D0735D3004CF58A /* PlacesMapViewController.swift */,
 				AC80F9131D082F98004CF58A /* PlacesPopoverTableViewController.swift */,
-				AC80F9151D084802004CF58A /* PlaceTableViewCell.swift */,
 				AC73860A1D100AE400B0AE24 /* PlaceDetailsViewController.swift */,
 				AC001EB91D192A44009B4176 /* PlacesTableViewController.swift */,
-				C86A8D591E8F18F20057CD05 /* PlaceTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -284,6 +285,7 @@
 		AC80F90F1D08100B004CF58A /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				C8752A9D1E91015D001DABB2 /* Extensions */,
 				AC40CB101D13E77E00D01B9F /* RoureDrawer */,
 				AC40CB0B1D11444300D01B9F /* FoursquareWebService */,
 				AC80F9171D084870004CF58A /* Constants */,
@@ -306,6 +308,31 @@
 				AC80F9181D084884004CF58A /* Constants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		C8752A971E910083001DABB2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C8752A981E910083001DABB2 /* PlaceTableViewCell */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		C8752A981E910083001DABB2 /* PlaceTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				C8752A991E910083001DABB2 /* PlaceTableViewCell.swift */,
+				C8752A9A1E910083001DABB2 /* PlaceTableViewCell.xib */,
+			);
+			path = PlaceTableViewCell;
+			sourceTree = "<group>";
+		};
+		C8752A9D1E91015D001DABB2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C8752A9E1E9101A6001DABB2 /* NotificationCenter+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,7 +457,7 @@
 				AC80F8D51D070FAD004CF58A /* LaunchScreen.storyboard in Resources */,
 				AC80F8D21D070FAD004CF58A /* Assets.xcassets in Resources */,
 				AC80F8D01D070FAD004CF58A /* Main.storyboard in Resources */,
-				C86A8D5A1E8F18F20057CD05 /* PlaceTableViewCell.xib in Resources */,
+				C8752A9C1E910083001DABB2 /* PlaceTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,7 +624,6 @@
 				AC80F9141D082F98004CF58A /* PlacesPopoverTableViewController.swift in Sources */,
 				AC40CB0F1D1157A800D01B9F /* FoursquareVenue.swift in Sources */,
 				AC001EBC1D192A5D009B4176 /* PlacesTableViewModel.swift in Sources */,
-				AC80F9161D084802004CF58A /* PlaceTableViewCell.swift in Sources */,
 				AC40CB141D1423CF00D01B9F /* PlacesViewModel.swift in Sources */,
 				AC40CB121D13E79500D01B9F /* RouteDrawer.swift in Sources */,
 				AC73860B1D100AE400B0AE24 /* PlaceDetailsViewController.swift in Sources */,
@@ -605,9 +631,11 @@
 				AC40CB0A1D105B4400D01B9F /* PlaceDetailsViewModel.swift in Sources */,
 				AC80F9061D0735D3004CF58A /* PlacesMapViewController.swift in Sources */,
 				AC80F9191D084884004CF58A /* Constants.swift in Sources */,
+				C8752A9B1E910083001DABB2 /* PlaceTableViewCell.swift in Sources */,
 				AC80F8CB1D070FAD004CF58A /* AppDelegate.swift in Sources */,
 				AC80F90E1D074343004CF58A /* PlacesMapViewModel.swift in Sources */,
 				AC80F8FE1D071A1D004CF58A /* PinPlace.xcdatamodeld in Sources */,
+				C8752A9F1E9101A6001DABB2 /* NotificationCenter+Extensions.swift in Sources */,
 				AC80F9041D071B87004CF58A /* _Place.swift in Sources */,
 				AC40CB0D1D11446C00D01B9F /* FoursquareWebService.swift in Sources */,
 				AC001EBA1D192A44009B4176 /* PlacesTableViewController.swift in Sources */,

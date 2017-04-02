@@ -45,14 +45,14 @@ class PlaceDetailsViewController: UIViewController {
             }.addDisposableTo(disposeBag)
 
         centerOnMapButton.rx.tap.bindNext { [unowned self] in
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationName.CenterPlace.rawValue), object: self.viewModel?.place)
+            NotificationCenter.default.post(name: .centerPlaceOnMap, object: self.viewModel?.place)
             self.navigationController?.popToRootViewController(animated: true)
             }.addDisposableTo(disposeBag)
 
         buildRouteButton.rx.tap.bindNext {[unowned self] in
             if let mapViewController = self.navigationController?.viewControllers.first as? PlacesMapViewController {
                 mapViewController.viewModel.selectedTargetPlace = self.viewModel?.place
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationName.BuildRoute.rawValue), object: nil)
+                NotificationCenter.default.post(name: .buildRoute, object: nil)
                 self.navigationController?.popToRootViewController(animated: true)
             }
             }.addDisposableTo(disposeBag)
@@ -65,7 +65,7 @@ class PlaceDetailsViewController: UIViewController {
             alertController.addAction(cancelAction)
 
             let OKAction = UIAlertAction(title: "OK", style: .default) { [unowned self] (action) in
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationName.PlaceDeleted.rawValue), object: self.viewModel?.place)
+                NotificationCenter.default.post(name: .placeDeleted, object: self.viewModel?.place)
                 self.viewModel?.deletePlace()
                 self.navigationController?.popViewController(animated: true)
             }
