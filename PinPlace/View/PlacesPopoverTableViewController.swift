@@ -21,13 +21,16 @@ class PlacesPopoverTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView.register(PlaceTableViewCell.nib,
+                           forCellReuseIdentifier: PlaceTableViewCell.reuseIdentifier)
         
         viewModel.fetchPlaces()
         
         viewModel.places
             .asObservable()
-            .bindTo(tableView.rx.items(cellIdentifier: PlaceTableViewCell.reuseIdentifier)) { row, place, cell in
-                guard let cell = cell as? PlaceTableViewCell else { return }
+            .bindTo(tableView.rx.items(cellIdentifier: PlaceTableViewCell.reuseIdentifier,
+                                       cellType: PlaceTableViewCell.self)) { row, place, cell in
                 cell.placeTitleLabel.text = place.title
             }.addDisposableTo(disposeBag)
 
