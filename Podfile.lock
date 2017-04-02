@@ -3,7 +3,7 @@ PODS:
   - JASON (3.1)
   - JSQCoreDataKit (6.0.2)
   - ObjectMapper (2.2.5)
-  - PKHUD (4.2.0)
+  - PKHUD (4.2.1)
   - RxAlamofire (3.0.2):
     - RxAlamofire/Core (= 3.0.2)
   - RxAlamofire/Core (3.0.2):
@@ -67,16 +67,16 @@ CHECKOUT OPTIONS:
     :commit: b03b43cc381ec02eb9855085427186ef89055eef
     :git: https://github.com/Alamofire/Alamofire
   JASON:
-    :commit: 30f7769ca3af81371e63e0ec0fc22e002b225038
+    :commit: 53f5f9f540ab6d66d76075deed6cc0d3da5cb61e
     :git: https://github.com/delba/JASON
   JSQCoreDataKit:
     :commit: f3be3f6f2beccac49501ac7ea62d0f8667994a17
     :git: https://github.com/jessesquires/JSQCoreDataKit
   ObjectMapper:
-    :commit: 94199e3573ba9b1d6051c07cf3628163a823a164
+    :commit: 1324e468d732509e6593a455f21b0f0eed12c712
     :git: https://github.com/Hearst-DD/ObjectMapper
   PKHUD:
-    :commit: 8fef55f1d2473010fb04541e52bc99653616928b
+    :commit: 311e8ed258169a8b2e5c94fad1b131dcd3e4cb55
     :git: https://github.com/pkluz/PKHUD
   RxAlamofire:
     :commit: e73e2e1bc1d6a5adc9326c4bdf7fd6833852bd73
@@ -85,16 +85,16 @@ CHECKOUT OPTIONS:
     :commit: 42b0fb95727bc53ac8253aa8ff8a9fc2fd16eedf
     :git: https://github.com/RxSwiftCommunity/RxCoreData
   RxDataSources:
-    :commit: ff7c932b0cdce9b9b2b585f1483452c28ee885a2
+    :commit: d727401cba2a194473d1c1695de64aa15196c188
     :git: https://github.com/RxSwiftCommunity/RxDataSources
   RxGesture:
-    :commit: 96e1e7a2fe606663d347760508c09717bf11d660
+    :commit: 9928196c9e22ffd8b6307c5f1d4be15324a7dacd
     :git: https://github.com/RxSwiftCommunity/RxGesture
   RxMKMapView:
     :commit: a741c2b8fcfda632256dc7f6e5ba0322c4921f92
     :git: https://github.com/RxSwiftCommunity/RxMKMapView
   RxSwift:
-    :commit: 068b4de87a58d637179709c41929cd53881b1c09
+    :commit: 515d3ae8221095f799735d34630e54aeb3a78ab9
     :git: https://github.com/ReactiveX/RxSwift
 
 SPEC CHECKSUMS:
@@ -102,7 +102,7 @@ SPEC CHECKSUMS:
   JASON: de74af49c63481a72e143bc91a9e22571828e1da
   JSQCoreDataKit: 79d6f6ca6f7b687795c74da1317e8a9bd168795b
   ObjectMapper: d4cd68f462d89a878a1c2c480f389ec5f9a7ea04
-  PKHUD: c7e8c1595d687b41a10aac59589c357bfcb7df61
+  PKHUD: 8a7bfcd1fcd478bcfac1c1eef084bb24fd67baea
   RxAlamofire: 2f17cab1668dae4e4acecd7af48cf4533af47c43
   RxCocoa: 7dcb7a1860fc9cd0e23dae67ab105fc2916670b6
   RxCoreData: 02ec48ad9fce7460ff3f09e60dfe14434bdff5c2
