@@ -13,39 +13,37 @@ import RxAlamofire
 import RxSwift
 
 final class FoursquareWebService {
-    
+
     fileprivate enum RequestKey: String {
-        case ClientId = "client_id"
-        case ClientSecret = "client_secret"
-        case APIVersion = "v"
-        case Coordinates = "ll"
+        case clientId = "client_id"
+        case clientSecret = "client_secret"
+        case apiVersion = "v"
+        case coordinates = "ll"
     }
-    
+
     fileprivate enum ResponseKey: String {
-        case Response = "response"
-        case Venues = "venues"
+        case response, venues
     }
-    
+
     fileprivate enum WebServiceConstant: String {
-        case SearchVenuesURL = "https://api.foursquare.com/v2/venues/search"
-        case ClientId = "5XOWXECUBZAYTVY1EPA30CGWABN3FJY2XYSFIYK5FJ4WJNYS"
-        case ClientSecret = "01T2ZQJVU5IYEXK4CF2A5LUFN1K5BEKLPDW3GCITXS4AUNYU"
-        case APIVersion = "20141219"
+        case searchVenuesURL = "https://api.foursquare.com/v2/venues/search"
+        case clientId = "5XOWXECUBZAYTVY1EPA30CGWABN3FJY2XYSFIYK5FJ4WJNYS"
+        case clientSecret = "01T2ZQJVU5IYEXK4CF2A5LUFN1K5BEKLPDW3GCITXS4AUNYU"
+        case apiVersion = "20141219"
     }
-    
+
     func fetchNearbyFoursqareVenues(forPlace place: Place) ->Observable<[FoursquareVenue]> {
-        
-        let parameters = [RequestKey.ClientId.rawValue : WebServiceConstant.ClientId.rawValue,
-                          RequestKey.ClientSecret.rawValue : WebServiceConstant.ClientSecret.rawValue,
-                          RequestKey.APIVersion.rawValue : WebServiceConstant.APIVersion.rawValue,
-                          RequestKey.Coordinates.rawValue : "\(place.coordinate.latitude), \(place.coordinate.longitude)"] as Dictionary<String, String>
-        
-        
-        return requestJSON(.get, WebServiceConstant.SearchVenuesURL.rawValue, parameters: parameters)
+
+        let parameters = [RequestKey.clientId.rawValue: WebServiceConstant.clientId.rawValue,
+                          RequestKey.clientSecret.rawValue: WebServiceConstant.clientSecret.rawValue,
+                          RequestKey.apiVersion.rawValue: WebServiceConstant.apiVersion.rawValue,
+                          RequestKey.coordinates.rawValue: "\(place.coordinate.latitude), \(place.coordinate.longitude)"] as Dictionary<String, String>
+
+        return requestJSON(.get, WebServiceConstant.searchVenuesURL.rawValue, parameters: parameters)
             .observeOn(MainScheduler.instance)
-            .map { httpUrlResponse, responseData in
-                return JSON(responseData)[ResponseKey.Response.rawValue][ResponseKey.Venues.rawValue].map{FoursquareVenue($0)}
+            .map { _, responseData in
+                return JSON(responseData)[ResponseKey.response.rawValue][ResponseKey.venues.rawValue].map {FoursquareVenue($0)}
         }
     }
-    
+
 }

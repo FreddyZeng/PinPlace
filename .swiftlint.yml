@@ -1,0 +1,5 @@
+included:
+  - PinPlace
+excluded:
+  - Pods
+line_length: 120

@@ -5,8 +5,7 @@ import Foundation
 import CoreData
 
 public enum PlaceAttributes: String {
-    case location = "location"
-    case title = "title"
+    case location, title
 }
 
 open class _Place: NSManagedObject {
@@ -43,4 +42,3 @@ open class _Place: NSManagedObject {
     // MARK: - Relationships
 
 }
-

@@ -13,7 +13,7 @@ import RxSwift
 
 final class PlacesMapViewModel: PlacesViewModel {
 
-    //MARK: - Properties
+    // MARK: - Properties
 
     var userLocationCoordinate2D: CLLocationCoordinate2D?
     var selectedTargetPlace: Place?
@@ -21,7 +21,7 @@ final class PlacesMapViewModel: PlacesViewModel {
     fileprivate let locationManager = CLLocationManager()
     fileprivate(set) var currentRouteMKDirectionsResponse = Variable<MKDirectionsResponse?>(MKDirectionsResponse())
 
-    //MARK: - Methods
+    // MARK: - Methods
 
     func setupLocationManagerWithDelegate(_ locationManagerDelegate: CLLocationManagerDelegate) {
         locationManager.delegate = locationManagerDelegate
@@ -35,7 +35,7 @@ final class PlacesMapViewModel: PlacesViewModel {
         places.value.append(newPlace)
         PlacesDataController.sharedInstance.saveChanges()
     }
-    
+
     func buildRoute(onErrorCompletion: @escaping ((String?) -> Void)) {
         do {
             currentRouteMKDirectionsResponse.value = nil

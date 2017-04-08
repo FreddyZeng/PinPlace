@@ -17,12 +17,12 @@ enum RouteCalculatorError: Error {
 
 final class RouteCalculator {
 
-    //MARK: - Properties
+    // MARK: - Properties
 
     private var currentRouteDirections: MKDirections?
-    
-    //MARK: - Methods
-    
+
+    // MARK: - Methods
+
     func calculateRoute(from startCoordinate: CLLocationCoordinate2D?,
                         to finishCoordinate: CLLocationCoordinate2D?,
                         completion: @escaping ((MKDirectionsResponse?, NSError?) -> Void)) throws {
@@ -48,7 +48,7 @@ final class RouteCalculator {
 
         currentRouteDirections = MKDirections(request: directionsRequest)
 
-        currentRouteDirections?.calculate() { directionsResponse, error in
+        currentRouteDirections?.calculate { directionsResponse, error in
             DispatchQueue.main.async {
                 if error != nil && directionsResponse == nil {
                     completion(nil, error as NSError?)

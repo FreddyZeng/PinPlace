@@ -9,9 +9,9 @@
 import UIKit
 
 class PlaceTableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var placeTitleLabel: UILabel!
-    
+
+    @IBOutlet private(set) weak var placeTitleLabel: UILabel!
+
     class var reuseIdentifier: String {
         get {
             return "PlaceTableViewCellReuseIdentifier"
@@ -23,5 +23,5 @@ class PlaceTableViewCell: UITableViewCell {
             return UINib(nibName: "PlaceTableViewCell", bundle: nil)
         }
     }
-    
+
 }
