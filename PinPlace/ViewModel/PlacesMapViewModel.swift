@@ -13,11 +13,15 @@ import RxSwift
 
 final class PlacesMapViewModel: PlacesViewModel {
 
+    //MARK: - Properties
+
     var userLocationCoordinate2D: CLLocationCoordinate2D?
     var selectedTargetPlace: Place?
-    let routeCalculator = RouteCalculator()
+    private let routeCalculator = RouteCalculator()
     fileprivate let locationManager = CLLocationManager()
     fileprivate(set) var currentRouteMKDirectionsResponse = Variable<MKDirectionsResponse?>(MKDirectionsResponse())
+
+    //MARK: - Methods
 
     func setupLocationManagerWithDelegate(_ locationManagerDelegate: CLLocationManagerDelegate) {
         locationManager.delegate = locationManagerDelegate

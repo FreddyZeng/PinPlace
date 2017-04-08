@@ -67,10 +67,9 @@ class PlacesTableViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueIdentifier.showPlaceDetails.rawValue {
             guard let place = sender as? Place,
-                let destinationViewController = segue.destination as? PlaceDetailsViewController
+                let placeDetailsViewController = segue.destination as? PlaceDetailsViewController
                 else { return }
-            destinationViewController.viewModel = PlaceDetailsViewModel()
-            destinationViewController.viewModel?.place = place
+            placeDetailsViewController.viewModel.place = place
         }
     }
 }

@@ -21,7 +21,7 @@ class PlaceDetailsViewController: UIViewController {
     @IBOutlet fileprivate weak var tableView: UITableView!
     @IBOutlet fileprivate weak var trashBarButtonItem: UIBarButtonItem!
 
-    var viewModel: PlaceDetailsViewModel?
+    let viewModel =  PlaceDetailsViewModel()
     fileprivate let disposeBag = DisposeBag()
 
     // MARK: - UIViewController
@@ -32,26 +32,26 @@ class PlaceDetailsViewController: UIViewController {
         tableView.register(PlaceTableViewCell.nib,
                            forCellReuseIdentifier: PlaceTableViewCell.reuseIdentifier)
 
-        viewModel?.place?.rx.observe(String.self, PlaceAttributes.title.rawValue).bindNext { [unowned self] newValue in
+        viewModel.place?.rx.observe(String.self, PlaceAttributes.title.rawValue).bindNext { [unowned self] newValue in
             self.navigationItem.title = newValue
-            self.viewModel?.savePlaceTitle()
+            self.viewModel.savePlaceTitle()
             }.addDisposableTo(disposeBag)
 
         loadNearbyPlacesButton.rx.tap.bindNext {[unowned self] in
             HUD.show(.progress)
-            self.viewModel?.fetchNearbyPlaces() {
+            self.viewModel.fetchNearbyPlaces() {
                 HUD.flash(.success, delay: 1.0)
             }
             }.addDisposableTo(disposeBag)
 
         centerOnMapButton.rx.tap.bindNext { [unowned self] in
-            NotificationCenter.default.post(name: .centerPlaceOnMap, object: self.viewModel?.place)
+            NotificationCenter.default.post(name: .centerPlaceOnMap, object: self.viewModel.place)
             self.navigationController?.popToRootViewController(animated: true)
             }.addDisposableTo(disposeBag)
 
         buildRouteButton.rx.tap.bindNext {[unowned self] in
             if let mapViewController = self.navigationController?.viewControllers.first as? PlacesMapViewController {
-                mapViewController.viewModel.selectedTargetPlace = self.viewModel?.place
+                mapViewController.viewModel.selectedTargetPlace = self.viewModel.place
                 NotificationCenter.default.post(name: .buildRoute, object: nil)
                 self.navigationController?.popToRootViewController(animated: true)
             }
@@ -65,8 +65,8 @@ class PlaceDetailsViewController: UIViewController {
             alertController.addAction(cancelAction)
 
             let OKAction = UIAlertAction(title: "OK", style: .default) { [unowned self] (action) in
-                NotificationCenter.default.post(name: .placeDeleted, object: self.viewModel?.place)
-                self.viewModel?.deletePlace()
+                NotificationCenter.default.post(name: .placeDeleted, object: self.viewModel.place)
+                self.viewModel.deletePlace()
                 self.navigationController?.popViewController(animated: true)
             }
             alertController.addAction(OKAction)
@@ -74,15 +74,15 @@ class PlaceDetailsViewController: UIViewController {
             self.present(alertController, animated: true, completion: nil)
             }.addDisposableTo(disposeBag)
 
-        viewModel?.nearbyVenues.asDriver()
+        viewModel.nearbyVenues.asDriver()
             .drive(tableView.rx.items(cellIdentifier: PlaceTableViewCell.reuseIdentifier, cellType: PlaceTableViewCell.self)) { (index, venue, cell) in
                 cell.placeTitleLabel.text = venue.name
             }.disposed(by: disposeBag)
 
 
         tableView.rx.itemSelected.bindNext { [unowned self] selectedIndexPath in
-            let selectedNearbyVenue = self.viewModel?.nearbyVenues.value[selectedIndexPath.row]
-            self.viewModel?.place?.title = selectedNearbyVenue?.name
+            let selectedNearbyVenue = self.viewModel.nearbyVenues.value[selectedIndexPath.row]
+            self.viewModel.place?.title = selectedNearbyVenue.name
             }.addDisposableTo(disposeBag)
         
     }

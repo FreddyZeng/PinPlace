@@ -19,7 +19,7 @@ class PlacesMapViewController: UIViewController {
         case `default`, routing
     }
     
-    // MARK: - Properties
+    //MARK: - Properties
     
     @IBOutlet fileprivate weak var routeBarButtonItem: UIBarButtonItem!
     @IBOutlet fileprivate weak var longPressGestureRecognizer: UILongPressGestureRecognizer!
@@ -34,7 +34,7 @@ class PlacesMapViewController: UIViewController {
        removeNotifications()
     }
     
-    // MARK: - UIViewController
+    //MARK: - UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,14 +119,13 @@ class PlacesMapViewController: UIViewController {
             destPopoverVC.delegate = self
         } else if segue.identifier == SegueIdentifier.showPlaceDetails.rawValue {
             guard let place = sender as? Place,
-                let destinationViewController = segue.destination as? PlaceDetailsViewController
+                let placeDetailsViewController = segue.destination as? PlaceDetailsViewController
                 else { return }
-            destinationViewController.viewModel = PlaceDetailsViewModel()
-            destinationViewController.viewModel?.place = place
+            placeDetailsViewController.viewModel.place = place
         }
     }
     
-    // MARK: - NSNotificationCenter Handlers
+    //MARK: - NSNotificationCenter Handlers
 
     @objc private func buildRoute() {
         appMode = .routing
@@ -173,7 +172,7 @@ class PlacesMapViewController: UIViewController {
         }
     }
     
-    // MARK: - Private
+    //MARK: - Private
     
     fileprivate func setupMapForUpdatingUserLocation() {
         self.viewModel.setupLocationManagerWithDelegate(self)
@@ -220,13 +219,13 @@ class PlacesMapViewController: UIViewController {
     }
 }
 
-// MARK: - CLLocationManagerDelegate
+//MARK: - CLLocationManagerDelegate
 
 extension PlacesMapViewController: CLLocationManagerDelegate {
     
 }
 
-// MARK: - MKMapViewDelegate
+//MARK: - MKMapViewDelegate
 
 extension PlacesMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -247,7 +246,7 @@ extension PlacesMapViewController: MKMapViewDelegate {
     }
 }
 
-// MARK: - UIPopoverPresentationControllerDelegate
+//MARK: - UIPopoverPresentationControllerDelegate
 
 extension PlacesMapViewController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
