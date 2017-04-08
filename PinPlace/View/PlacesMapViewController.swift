@@ -107,7 +107,6 @@ class PlacesMapViewController: UIViewController {
         
         if appMode == .default {
             viewModel.fetchPlaces()
-//            mapView.addAnnotations(viewModel.places.value)
         }
     }
     
@@ -187,7 +186,6 @@ class PlacesMapViewController: UIViewController {
         self.routeBarButtonItem.title = "Route"
         self.viewModel.clearRoute()
         viewModel.fetchPlaces()
-//        mapView.addAnnotations(viewModel.places.value)
     }
     
     fileprivate func subscribeOnNotifications() {
