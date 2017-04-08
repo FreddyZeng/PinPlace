@@ -4,9 +4,9 @@ Routing app.</br>
 Build with MVVM+RxSwift and ❤️.
 
 <b> Requirements </b>
- - iOS 9.1 +
- - Swift 2.2
- - Xcode 7.3.1 +
+ - iOS 10.0 +
+ - Swift 3.1
+ - Xcode 8.3.1 +
 
 <b> Screenshots </b>
 <table style="width:100%">
