@@ -74,8 +74,8 @@ class PlaceDetailsViewController: UIViewController {
             self.present(alertController, animated: true, completion: nil)
             }.addDisposableTo(disposeBag)
 
-        viewModel?.nearbyVenues.asObservable()
-            .bindTo(tableView.rx.items(cellIdentifier: PlaceTableViewCell.reuseIdentifier, cellType: PlaceTableViewCell.self)) { (index, venue, cell) in
+        viewModel?.nearbyVenues.asDriver()
+            .drive(tableView.rx.items(cellIdentifier: PlaceTableViewCell.reuseIdentifier, cellType: PlaceTableViewCell.self)) { (index, venue, cell) in
                 cell.placeTitleLabel.text = venue.name
             }.disposed(by: disposeBag)
 

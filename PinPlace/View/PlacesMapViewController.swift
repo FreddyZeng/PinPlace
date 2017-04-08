@@ -39,7 +39,7 @@ class PlacesMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        subscibeOnNotifications()
+        subscribeOnNotifications()
         setupMapForUpdatingUserLocation()
         
         longPressGestureRecognizer.rx.event.bindNext { [unowned self] longPressGesture in
@@ -165,7 +165,7 @@ class PlacesMapViewController: UIViewController {
         mapView.addAnnotations(viewModel.places.value)
     }
     
-    fileprivate func subscibeOnNotifications() {
+    fileprivate func subscribeOnNotifications() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(centerPlaceNotification),
                                                name: .centerPlaceOnMap,

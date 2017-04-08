@@ -30,8 +30,8 @@ class PlacesTableViewController: UIViewController {
                            forCellReuseIdentifier: PlaceTableViewCell.reuseIdentifier)
 
         viewModel.places
-            .asObservable()
-            .bindTo(tableView.rx.items(cellIdentifier: PlaceTableViewCell.reuseIdentifier,
+            .asDriver()
+            .drive(tableView.rx.items(cellIdentifier: PlaceTableViewCell.reuseIdentifier,
                                        cellType: PlaceTableViewCell.self)) { (row, place, cell) in
                                         cell.placeTitleLabel.text = place.title
             }.addDisposableTo(disposeBag)
