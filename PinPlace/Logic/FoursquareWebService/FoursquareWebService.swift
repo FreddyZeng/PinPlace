@@ -12,7 +12,7 @@ import Alamofire
 import RxAlamofire
 import RxSwift
 
-class FoursquareWebService {
+final class FoursquareWebService {
     
     fileprivate enum RequestKey: String {
         case ClientId = "client_id"

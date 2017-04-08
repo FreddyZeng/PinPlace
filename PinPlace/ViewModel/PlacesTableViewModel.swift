@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PlacesTableViewModel: PlacesViewModel {
+final class PlacesTableViewModel: PlacesViewModel {
     
     func deletePlace(_ place: Place) {
         PlacesDataController.sharedInstance.deletePlace(place)

@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class PlaceDetailsViewModel {
+final class PlaceDetailsViewModel {
     
     //MARK: - Properties
     

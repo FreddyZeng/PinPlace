@@ -9,7 +9,7 @@
 import Foundation
 import JSQCoreDataKit
 
-class PlacesDataController {
+final class PlacesDataController {
     
     // MARK: - Properties
     

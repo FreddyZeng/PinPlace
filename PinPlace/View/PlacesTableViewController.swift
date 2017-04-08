@@ -38,7 +38,7 @@ class PlacesTableViewController: UIViewController {
 
         tableView.rx.itemSelected.bindNext() { [unowned self] indexPath in
             self.tableView.deselectRow(at: indexPath, animated: true)
-            self.performSegue(withIdentifier: SegueIdentifier.ShowPlaceDetails.rawValue,
+            self.performSegue(withIdentifier: SegueIdentifier.showPlaceDetails.rawValue,
                               sender: self.viewModel.places.value[indexPath.row])
             }.addDisposableTo(disposeBag)
 
@@ -65,7 +65,7 @@ class PlacesTableViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == SegueIdentifier.ShowPlaceDetails.rawValue {
+        if segue.identifier == SegueIdentifier.showPlaceDetails.rawValue {
             guard let place = sender as? Place,
                 let destinationViewController = segue.destination as? PlaceDetailsViewController
                 else { return }

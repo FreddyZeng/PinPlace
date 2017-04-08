@@ -56,7 +56,7 @@ class PlacesMapViewController: UIViewController {
         mapView.rx.annotationViewCalloutAccessoryControlTapped.bindNext { [unowned self] view, control in
             if view.annotation is Place {
                 self.mapView.deselectAnnotation(view.annotation, animated: false)
-                self.performSegue(withIdentifier: SegueIdentifier.ShowPlaceDetails.rawValue, sender: view.annotation)
+                self.performSegue(withIdentifier: SegueIdentifier.showPlaceDetails.rawValue, sender: view.annotation)
             }
             }.addDisposableTo(disposeBag)
         
@@ -65,7 +65,7 @@ class PlacesMapViewController: UIViewController {
             let coordinateSpan = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
             let locationCoordinate = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude,
                                                            longitude: userLocation.coordinate.longitude)
-            
+            self.viewModel.userLocationCoordinate2D = locationCoordinate
             let region = MKCoordinateRegion(center: locationCoordinate, span: coordinateSpan)
             self.mapView.setRegion(region, animated: true)
         }.addDisposableTo(disposeBag)
@@ -73,11 +73,32 @@ class PlacesMapViewController: UIViewController {
         routeBarButtonItem.rx.tap.bindNext { [unowned self] in
             switch self.appMode {
             case .default:
-                self.performSegue(withIdentifier: SegueIdentifier.ShowPopover.rawValue, sender: self)
+                self.performSegue(withIdentifier: SegueIdentifier.showPopover.rawValue, sender: self)
             case .routing:
                 self.switchAppToNormalMode()
             }
         }.addDisposableTo(disposeBag)
+
+        viewModel.places.asDriver().drive(onNext: { [weak self] placesAnnotations in
+            self?.mapView.addAnnotations(placesAnnotations)
+        }).addDisposableTo(disposeBag)
+
+        viewModel.currentRouteMKDirectionsResponse.asDriver().drive(onNext: { [weak self] mkDirectionsResponse in
+            guard let weakSelf = self else { return }
+            if let mkDirectionsResponse = mkDirectionsResponse {
+                var totalRect = MKMapRectNull
+                for route in mkDirectionsResponse.routes {
+                    weakSelf.mapView.add(route.polyline, level: .aboveRoads)
+                    let polygon = MKPolygon(points: route.polyline.points(), count: route.polyline.pointCount)
+                    let routeRect = polygon.boundingMapRect
+                    totalRect = MKMapRectUnion(totalRect, routeRect)
+                }
+                weakSelf.mapView.setVisibleMapRect(totalRect, edgePadding: UIEdgeInsetsMake(30, 30, 30, 30), animated: true)
+            } else {
+                weakSelf.mapView.removeAnnotations(weakSelf.mapView.annotations)
+                weakSelf.mapView.removeOverlays(weakSelf.mapView.overlays)
+            }
+        }).addDisposableTo(disposeBag)
         
     }
     
@@ -86,18 +107,18 @@ class PlacesMapViewController: UIViewController {
         
         if appMode == .default {
             viewModel.fetchPlaces()
-            mapView.addAnnotations(viewModel.places.value)
+//            mapView.addAnnotations(viewModel.places.value)
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == SegueIdentifier.ShowPopover.rawValue {
+        if segue.identifier == SegueIdentifier.showPopover.rawValue {
             guard let destVC = segue.destination as? PlacesPopoverTableViewController,
                 let destPopoverVC = destVC.popoverPresentationController else {
                     return
             }
             destPopoverVC.delegate = self
-        } else if segue.identifier == SegueIdentifier.ShowPlaceDetails.rawValue {
+        } else if segue.identifier == SegueIdentifier.showPlaceDetails.rawValue {
             guard let place = sender as? Place,
                 let destinationViewController = segue.destination as? PlaceDetailsViewController
                 else { return }
@@ -107,21 +128,25 @@ class PlacesMapViewController: UIViewController {
     }
     
     // MARK: - NSNotificationCenter Handlers
-    
+
     @objc private func buildRoute() {
         appMode = .routing
         routeBarButtonItem.title = "Clear Route"
-        viewModel.routeDrawer.mapView = self.mapView
         HUD.show(.progress)
-        viewModel.buildRoute() { errorMessage in
+        viewModel.buildRoute() { [weak self] errorMessage in
             HUD.flash(.success, delay: 1.0)
+            guard let weakSelf = self else { return }
             if let errorMessage = errorMessage {
                 let alertController = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
                 let cancelAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
                 }
                 alertController.addAction(cancelAction)
                 DispatchQueue.main.async {
-                    self.present(alertController, animated: true, completion: nil)
+                    weakSelf.present(alertController, animated: true, completion: nil)
+                }
+            } else {
+                if let targetAnnotation = weakSelf.viewModel.selectedTargetPlace {
+                    weakSelf.mapView.addAnnotation(targetAnnotation)
                 }
             }
         }
@@ -160,9 +185,9 @@ class PlacesMapViewController: UIViewController {
     fileprivate func switchAppToNormalMode() {
         self.appMode = .default
         self.routeBarButtonItem.title = "Route"
-        self.viewModel.routeDrawer.dismissCurrentRoute()
+        self.viewModel.clearRoute()
         viewModel.fetchPlaces()
-        mapView.addAnnotations(viewModel.places.value)
+//        mapView.addAnnotations(viewModel.places.value)
     }
     
     fileprivate func subscribeOnNotifications() {

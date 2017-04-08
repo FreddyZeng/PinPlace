@@ -7,14 +7,17 @@
 //
 
 import Foundation
+import MapKit
 import CoreLocation
 import RxSwift
 
-class PlacesMapViewModel: PlacesViewModel {
-    
+final class PlacesMapViewModel: PlacesViewModel {
+
+    var userLocationCoordinate2D: CLLocationCoordinate2D?
     var selectedTargetPlace: Place?
-    var routeDrawer = RouteDrawer()
+    let routeCalculator = RouteCalculator()
     fileprivate let locationManager = CLLocationManager()
+    fileprivate(set) var currentRouteMKDirectionsResponse = Variable<MKDirectionsResponse?>(MKDirectionsResponse())
 
     func setupLocationManagerWithDelegate(_ locationManagerDelegate: CLLocationManagerDelegate) {
         locationManager.delegate = locationManagerDelegate
@@ -29,23 +32,29 @@ class PlacesMapViewModel: PlacesViewModel {
         PlacesDataController.sharedInstance.saveChanges()
     }
     
-    func buildRoute(_ completion: @escaping ((String?) -> Void)) {
-        routeDrawer.targetPlace = selectedTargetPlace
+    func buildRoute(onErrorCompletion: @escaping ((String?) -> Void)) {
         do {
-            try routeDrawer.showRouteToTargetPlace() { error in
-                completion(error?.localizedDescription)
+            currentRouteMKDirectionsResponse.value = nil
+            try routeCalculator.calculateRoute(from: userLocationCoordinate2D,
+                                               to: selectedTargetPlace?.location?.coordinate) { [weak self] mkDirectionsResponse, error in
+                if let calculatedDirections = mkDirectionsResponse {
+                    self?.currentRouteMKDirectionsResponse.value = calculatedDirections
+                    onErrorCompletion(nil)
+                } else {
+                    onErrorCompletion(error?.localizedDescription)
+                }
             }
-        } catch RouteDrawerError.destinationCoordiateMissed {
-            completion("Destination coordiate missed.")
-        } catch RouteDrawerError.routeCalculationFailed {
-            completion("Route calculation failed.")
-        } catch RouteDrawerError.targetPlaceIsNotProvided {
-            completion("Target place isn't provided.")
-        } catch RouteDrawerError.userLocationIsDisabled {
-            completion("User location is disabled")
+        } catch RouteCalculatorError.destinationCoordinateMissed {
+            onErrorCompletion("Destination coordinate missed.")
+        } catch RouteCalculatorError.userLocationCoordinateMissed {
+            onErrorCompletion("User location is disabled")
         } catch {
-            completion("Unknown error.")
+            onErrorCompletion("Unknown error.")
         }
-        
+    }
+
+    func clearRoute() {
+        currentRouteMKDirectionsResponse.value = nil
+        routeCalculator.dismissCurrentRoute()
     }
 }
