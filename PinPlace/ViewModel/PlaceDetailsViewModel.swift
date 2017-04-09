@@ -20,7 +20,7 @@ final class PlaceDetailsViewModel {
 
     // MARK: - Methods
 
-    func fetchNearbyPlaces(_ completion: (() -> Void)?) {
+    func fetchNearbyPlaces(_ completion: (() -> Void)? = nil) {
         if let place = place {
             foursquareWebService.fetchNearbyFoursqareVenues(forPlace: place).bindNext {[unowned self] venuesArray  in
                 completion?()
