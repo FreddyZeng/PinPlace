@@ -32,7 +32,7 @@ final class FoursquareWebService {
         case apiVersion = "20141219"
     }
 
-    func fetchNearbyFoursqareVenues(forPlace place: Place) ->Observable<[FoursquareVenue]> {
+    func fetchNearbyFoursqareVenues(forPlace place: Place) -> Observable<[FoursquareVenue]> {
 
         let parameters = [RequestKey.clientId.rawValue: WebServiceConstant.clientId.rawValue,
                           RequestKey.clientSecret.rawValue: WebServiceConstant.clientSecret.rawValue,
@@ -40,7 +40,7 @@ final class FoursquareWebService {
                           RequestKey.coordinates.rawValue: "\(place.coordinate.latitude), \(place.coordinate.longitude)"] as Dictionary<String, String>
 
         return requestJSON(.get, WebServiceConstant.searchVenuesURL.rawValue, parameters: parameters)
-            .observeOn(MainScheduler.instance)
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .map { _, responseData in
                 return JSON(responseData)[ResponseKey.response.rawValue][ResponseKey.venues.rawValue].map {FoursquareVenue($0)}
         }

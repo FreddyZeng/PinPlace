@@ -37,10 +37,10 @@ class PlaceDetailsViewController: UIViewController {
             self.viewModel.savePlaceTitle()
         }.addDisposableTo(disposeBag)
 
-        loadNearbyPlacesButton.rx.tap.bindNext {[unowned self] in
-            HUD.show(.progress)
-            self.viewModel.fetchNearbyPlaces {
-                HUD.flash(.success, delay: 1.0)
+        loadNearbyPlacesButton.rx.tap.bindNext { [unowned self] in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            self.viewModel.fetchNearbyPlaces() {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
         }.addDisposableTo(disposeBag)
 
@@ -49,7 +49,7 @@ class PlaceDetailsViewController: UIViewController {
             self.navigationController?.popToRootViewController(animated: true)
         }.addDisposableTo(disposeBag)
 
-        buildRouteButton.rx.tap.bindNext {[unowned self] in
+        buildRouteButton.rx.tap.bindNext { [unowned self] in
             if let mapViewController = self.navigationController?.viewControllers.first as? PlacesMapViewController {
                 mapViewController.viewModel.selectedTargetPlace = self.viewModel.place
                 NotificationCenter.default.post(name: .buildRoute, object: nil)
