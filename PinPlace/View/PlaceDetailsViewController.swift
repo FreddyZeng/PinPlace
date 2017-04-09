@@ -57,7 +57,7 @@ class PlaceDetailsViewController: UIViewController {
             }
         }.addDisposableTo(disposeBag)
 
-        trashBarButtonItem.rx.tap.bindNext { _ in
+        trashBarButtonItem.rx.tap.bindNext { [unowned self] _ in
             let alertController = UIAlertController(title: "", message: "Delete this place?", preferredStyle: .alert)
 
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
