@@ -12,7 +12,7 @@
 		AC40CB0A1D105B4400D01B9F /* PlaceDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40CB091D105B4400D01B9F /* PlaceDetailsViewModel.swift */; };
 		AC40CB0D1D11446C00D01B9F /* FoursquareWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40CB0C1D11446C00D01B9F /* FoursquareWebService.swift */; };
 		AC40CB0F1D1157A800D01B9F /* FoursquareVenue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40CB0E1D1157A800D01B9F /* FoursquareVenue.swift */; };
-		AC40CB121D13E79500D01B9F /* RouteDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40CB111D13E79500D01B9F /* RouteDrawer.swift */; };
+		AC40CB121D13E79500D01B9F /* RouteCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40CB111D13E79500D01B9F /* RouteCalculator.swift */; };
 		AC40CB141D1423CF00D01B9F /* PlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC40CB131D1423CF00D01B9F /* PlacesViewModel.swift */; };
 		AC73860B1D100AE400B0AE24 /* PlaceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73860A1D100AE400B0AE24 /* PlaceDetailsViewController.swift */; };
 		AC80F8CB1D070FAD004CF58A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC80F8CA1D070FAD004CF58A /* AppDelegate.swift */; };
@@ -68,7 +68,7 @@
 		AC40CB091D105B4400D01B9F /* PlaceDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetailsViewModel.swift; sourceTree = "<group>"; };
 		AC40CB0C1D11446C00D01B9F /* FoursquareWebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareWebService.swift; sourceTree = "<group>"; };
 		AC40CB0E1D1157A800D01B9F /* FoursquareVenue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareVenue.swift; sourceTree = "<group>"; };
-		AC40CB111D13E79500D01B9F /* RouteDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDrawer.swift; sourceTree = "<group>"; };
+		AC40CB111D13E79500D01B9F /* RouteCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCalculator.swift; sourceTree = "<group>"; };
 		AC40CB131D1423CF00D01B9F /* PlacesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewModel.swift; sourceTree = "<group>"; };
 		AC73860A1D100AE400B0AE24 /* PlaceDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetailsViewController.swift; sourceTree = "<group>"; };
 		AC80F8C71D070FAD004CF58A /* PinPlace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinPlace.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,12 +168,12 @@
 			path = FoursquareWebService;
 			sourceTree = "<group>";
 		};
-		AC40CB101D13E77E00D01B9F /* RoureDrawer */ = {
+		AC40CB101D13E77E00D01B9F /* RoureCalculator */ = {
 			isa = PBXGroup;
 			children = (
-				AC40CB111D13E79500D01B9F /* RouteDrawer.swift */,
+				AC40CB111D13E79500D01B9F /* RouteCalculator.swift */,
 			);
-			path = RoureDrawer;
+			path = RoureCalculator;
 			sourceTree = "<group>";
 		};
 		AC80F8BE1D070FAD004CF58A = {
@@ -286,7 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				C8752A9D1E91015D001DABB2 /* Extensions */,
-				AC40CB101D13E77E00D01B9F /* RoureDrawer */,
+				AC40CB101D13E77E00D01B9F /* RoureCalculator */,
 				AC40CB0B1D11444300D01B9F /* FoursquareWebService */,
 				AC80F9171D084870004CF58A /* Constants */,
 				AC80F9101D08101C004CF58A /* DAO */,
@@ -625,7 +625,7 @@
 				AC40CB0F1D1157A800D01B9F /* FoursquareVenue.swift in Sources */,
 				AC001EBC1D192A5D009B4176 /* PlacesTableViewModel.swift in Sources */,
 				AC40CB141D1423CF00D01B9F /* PlacesViewModel.swift in Sources */,
-				AC40CB121D13E79500D01B9F /* RouteDrawer.swift in Sources */,
+				AC40CB121D13E79500D01B9F /* RouteCalculator.swift in Sources */,
 				AC73860B1D100AE400B0AE24 /* PlaceDetailsViewController.swift in Sources */,
 				AC80F9121D08103C004CF58A /* PlacesDataController.swift in Sources */,
 				AC40CB0A1D105B4400D01B9F /* PlaceDetailsViewModel.swift in Sources */,
@@ -730,7 +730,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -770,7 +770,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

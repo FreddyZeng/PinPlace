@@ -1,5 +1,5 @@
 //
-//  RouteDrawer.swift
+//  RouteCalculator.swift
 //  PinPlace
 //
 //  Created by Artem on 6/17/16.
@@ -28,10 +28,12 @@ final class RouteCalculator {
                         completion: @escaping ((MKDirectionsResponse?, NSError?) -> Void)) throws {
 
         guard let finishCoordinate = finishCoordinate else {
+            completion(nil, RouteCalculatorError.destinationCoordinateMissed as NSError?)
             throw RouteCalculatorError.destinationCoordinateMissed
         }
 
         guard let _ = startCoordinate else {
+            completion(nil, RouteCalculatorError.destinationCoordinateMissed as NSError?)
             throw RouteCalculatorError.userLocationCoordinateMissed
         }
 

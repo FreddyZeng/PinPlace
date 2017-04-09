@@ -57,11 +57,10 @@ final class PlacesDataController {
     func fetchPlaces() -> Array<Place> {
         var result = Array<Place>()
 
-        guard let stack = self.stack, let placeEntity = Place.entity(stack.mainContext) else {
+        guard let stack = self.stack else {
             return result
         }
 
-        //let request = FetchRequest<Place>(entity: placeEntity)
         let request = Place.fetchRequest()
 
         do {
