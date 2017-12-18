@@ -5,8 +5,8 @@ Build with MVVM+RxSwift and ❤️.
 
 <b> Requirements </b>
  - iOS 10.0 +
- - Swift 3.1
- - Xcode 8.3.1 +
+ - Swift 4
+ - Xcode 9.2 +
 
 <b> Screenshots </b>
 <table style="width:100%">
