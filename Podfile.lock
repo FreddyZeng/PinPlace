@@ -1,29 +1,31 @@
 PODS:
-  - Alamofire (4.4.0)
+  - Alamofire (4.6.0)
+  - Differentiator (3.0.2)
   - JASON (3.1)
-  - JSQCoreDataKit (6.0.3)
-  - ObjectMapper (2.2.5)
-  - PKHUD (4.2.1)
-  - RxAlamofire (3.0.2):
-    - RxAlamofire/Core (= 3.0.2)
-  - RxAlamofire/Core (3.0.2):
-    - Alamofire (~> 4.0)
-    - RxSwift (~> 3.0)
-  - RxCocoa (3.3.1):
-    - RxSwift (~> 3.3)
-  - RxCoreData (0.3.1):
-    - RxCocoa (~> 3.0)
-    - RxSwift (~> 3.0)
-  - RxDataSources (1.0.3):
-    - RxCocoa (~> 3.0)
-    - RxSwift (~> 3.0)
-  - RxGesture (1.0.0):
-    - RxCocoa (~> 3.0)
-    - RxSwift (~> 3.0)
-  - RxMKMapView (3.0.0):
-    - RxCocoa (~> 3.0)
-    - RxSwift (~> 3.0)
-  - RxSwift (3.3.1)
+  - JSQCoreDataKit (7.0.0)
+  - ObjectMapper (3.1.0)
+  - PKHUD (5.0.0)
+  - RxAlamofire (4.0.0):
+    - RxAlamofire/Core (= 4.0.0)
+  - RxAlamofire/Core (4.0.0):
+    - Alamofire (~> 4.5)
+    - RxSwift (~> 4.0)
+  - RxCocoa (4.0.0):
+    - RxSwift (~> 4.0)
+  - RxCoreData (0.4.0):
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+  - RxDataSources (3.0.2):
+    - Differentiator (~> 3.0)
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+  - RxGesture (1.2.1):
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+  - RxMKMapView (4.0.0):
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+  - RxSwift (4.0.0)
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire`)
@@ -64,53 +66,54 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Alamofire:
-    :commit: 59a60d223c668e75053fbbcb9fced3d15e9654ca
+    :commit: bc973c5311ce3db3f01a9fcde027fb11fa2254bf
     :git: https://github.com/Alamofire/Alamofire
   JASON:
     :commit: 53f5f9f540ab6d66d76075deed6cc0d3da5cb61e
     :git: https://github.com/delba/JASON
   JSQCoreDataKit:
-    :commit: e5aa2c13b8542cb4d7f4f9caf603d40053116319
+    :commit: c48fed73909a295d9aa80e22a4a0e26a04301723
     :git: https://github.com/jessesquires/JSQCoreDataKit
   ObjectMapper:
-    :commit: 0b38c787d442714223604919f113d84cd55f5427
+    :commit: 04c624cbbc4f05659605ae72db0f3e9eaf2eeeef
     :git: https://github.com/Hearst-DD/ObjectMapper
   PKHUD:
-    :commit: 9e71ba76372dc617e1acb91145b9f3236374ed32
+    :commit: 4da1e090c0544575dd9eaebad09d1e6f6f74dfee
     :git: https://github.com/pkluz/PKHUD
   RxAlamofire:
-    :commit: e73e2e1bc1d6a5adc9326c4bdf7fd6833852bd73
+    :commit: 5f04a751ffa5b78fc6fad009bba9f72cf80f109e
     :git: https://github.com/RxSwiftCommunity/RxAlamofire
   RxCoreData:
-    :commit: 42b0fb95727bc53ac8253aa8ff8a9fc2fd16eedf
+    :commit: b32c3fb89cb2135c9608224a5577a37af3b13bbc
     :git: https://github.com/RxSwiftCommunity/RxCoreData
   RxDataSources:
-    :commit: d727401cba2a194473d1c1695de64aa15196c188
+    :commit: ddfc9a1fdba650984f3a72b5b318e55fcfeccbae
     :git: https://github.com/RxSwiftCommunity/RxDataSources
   RxGesture:
-    :commit: 9928196c9e22ffd8b6307c5f1d4be15324a7dacd
+    :commit: 88200f5132ed874b57a59a6fea6f770de38e2fc5
     :git: https://github.com/RxSwiftCommunity/RxGesture
   RxMKMapView:
-    :commit: a741c2b8fcfda632256dc7f6e5ba0322c4921f92
+    :commit: fd7dec8c30e9928f51335b45a8af712f32182b71
     :git: https://github.com/RxSwiftCommunity/RxMKMapView
   RxSwift:
-    :commit: 8b25f19d38d982c369467db51d53dba24170bfd0
+    :commit: 91f6cbedcc5c41dd1387f6c9f0c876ef515d1c96
     :git: https://github.com/ReactiveX/RxSwift
 
 SPEC CHECKSUMS:
-  Alamofire: 4c2bf7fa03c4a626163606de0a417568c270575e
+  Alamofire: 0dda98a0ed7eec4bdcd5fe3cdd35fcd2b3022825
+  Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
   JASON: de74af49c63481a72e143bc91a9e22571828e1da
-  JSQCoreDataKit: 8f2130db03553bf73c90e4133d3b179cd5c28e97
-  ObjectMapper: d4cd68f462d89a878a1c2c480f389ec5f9a7ea04
-  PKHUD: 8a7bfcd1fcd478bcfac1c1eef084bb24fd67baea
-  RxAlamofire: 2f17cab1668dae4e4acecd7af48cf4533af47c43
-  RxCocoa: 7dcb7a1860fc9cd0e23dae67ab105fc2916670b6
-  RxCoreData: 02ec48ad9fce7460ff3f09e60dfe14434bdff5c2
-  RxDataSources: 174ab36006db78c8fdde3e5c12e344c24504c550
-  RxGesture: ed705c79c5b81de98e627423171830f5c0311398
-  RxMKMapView: f8cc11dd545b30e681cb9461a5be8b1f2c26c8f3
-  RxSwift: 06f435ab0a2703829c726f089e7fa8a0dccdf12c
+  JSQCoreDataKit: cf182406d28b602260031c1a277aaeb115435a2e
+  ObjectMapper: 9a4b0d34a264821f26a0f431d79fd48a1f69862c
+  PKHUD: c97b3e1d0abc20ab79737107fdffaf855bc3832d
+  RxAlamofire: 5dbb88eb78faa8f22789aca70ea829b3f0a63ea2
+  RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
+  RxCoreData: 273c263c44755cd05bd6aa581afe956e60021007
+  RxDataSources: 011a916dd51c1430bfbbeef55bf08948678b192f
+  RxGesture: 1b1df277e4f3bef58bf5230f0f34b7a09bc75834
+  RxMKMapView: 78aae2745dd42998420dbc9a928e32ca21892229
+  RxSwift: 3308580de63238d5a2ead3064c32af2cc97ba949
 
-PODFILE CHECKSUM: e64860e9a4347d753b6b95a259581265b6eac60f
+PODFILE CHECKSUM: e88fed0818ff7580b02d4eb3c93201c43f3aca1c
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.3.1
